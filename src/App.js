@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>MD Simple Library</h1> 
+        <div className="options-buttons">
+            <div className="option">Text Field</div>
+            <div className="option">Switch</div>
+            <div className="option">Checkboxes</div>
+            <div className="option">Radio Buttons</div>
+        </div>
     </div>
   );
 }
