@@ -5,7 +5,7 @@
 
 .box-container {
     width: 400px;
-    height: 550px;
+    height: 600px;
     background-color: rgb(240, 240, 240);
     margin: 20px auto;
     display: flex;
@@ -81,7 +81,15 @@ form {
 
 input {
     width: 75%;
-   }
+}
+
+.field-input:disabled {
+    cursor: not-allowed;
+}
+
+.phone-box {
+    color: #9c9c9c;
+}
 
 .phone-box, .email-box, .username-box{
     position: absolute;
@@ -92,17 +100,20 @@ input {
 }
 
 .input-container:first-child {
-    margin-top: 48px;
+    margin-top: 40px;
 }
 
-.input-container > p {
+.input-container > p, .email-extra-message {
     font-size: 0.6rem;
     margin: 0;
     align-self: flex-start;
     padding-top: 5px;
-    padding-left: 16px;
     position: absolute;
     bottom: -15px;
+}
+
+.email-extra-message.error {
+    color: red;
 }
 
 .field-input {
@@ -131,6 +142,15 @@ input {
     background-color:  #10aca9;
 }
 
+.field-input.error ~ .border {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color:  red;
+}
+
 .field-input:focus ~ .border {
     width: 100%;
     transition: 0.5s;
@@ -147,10 +167,11 @@ input {
 .phone-box.float, .email-box.float, .username-box.float{
     font-size: 0.7rem;
     position: absolute;
-    top: 13px;
+    top: 15px;
     transition: 0.5s;
     color:  #077775;
 }
+
 
 .field-input:blur ~ .phone-box.float, .field-input:blur ~ .username-box.float, .field-input:blur ~ .email-box.float{
     font-size: 0.7rem;
@@ -158,6 +179,11 @@ input {
     top: 15px;
     transition: 0.5s;
     color:  #077775;
+}
+
+.field-input.error ~ .email-box.float {
+    color: red;
+    transition: 0s;
 }
 
 .field-input:blur ~ .phone-box, .field-input:blur ~ .email-box, .field-input:blur ~ .username-box{
@@ -169,15 +195,18 @@ input {
 
 .buttons {
     width: 80%;
-    height: 40px;
+    height: 50px;
     margin-top: 24px;
     border: none;
     background-color: #10aca9;
     color: #fff;
+    font-size: 0.8rem;
+    border-radius: 5px;
 }
 
 .buttons:last-of-type {
     margin-top: 8px;
     background-color: rgb(212, 212, 212);
     color: #737373;
+    margin-bottom: 32px;
 }

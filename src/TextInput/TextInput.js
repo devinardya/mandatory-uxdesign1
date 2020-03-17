@@ -1,6 +1,7 @@
 import React from 'react';
 import './text-style.css';
 import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
+import {MdError} from "react-icons/md";
 
 class TextInput extends React.Component {
     
@@ -13,6 +14,7 @@ class TextInput extends React.Component {
                         floatEmail:false,
                         floatUsername:false,
                         floatPhone:false,
+                        emailError: false,
         }
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -59,8 +61,12 @@ class TextInput extends React.Component {
                 this.setState({
                     email: "",
                     floatEmail: false,
+                    emailError: false,
                 });
             } else {
+                if(!this.state.email.includes("@")) {
+                    this.setState({emailError: true})
+                }
                 this.setState({floatEmail: true})
             }
 
@@ -82,24 +88,38 @@ class TextInput extends React.Component {
         let emailBoxClass;
         let usernameBoxClass;
         let phoneBoxClass;
+        let message;
+        let pClassName;
+        let fieldInputClassName;
 
         if(this.state.floatPhone ) {
-            phoneBoxClass = "phone-box float"
+            phoneBoxClass = "phone-box float";
         } else {
-            phoneBoxClass = "phone-box"
+            phoneBoxClass = "phone-box";
         }
 
         if(this.state.floatEmail) {
-            emailBoxClass = "email-box float"
+            emailBoxClass = "email-box float";
         } else {
-            emailBoxClass = "email-box"
+            emailBoxClass = "email-box";
         }
 
         if(this.state.floatUsername ) {
-            usernameBoxClass = "username-box float"
+            usernameBoxClass = "username-box float";
         } else {
-            usernameBoxClass = "username-box"
+            usernameBoxClass = "username-box";
         }
+
+        if(this.state.emailError) {
+            message = "Please enter valid email address";
+            pClassName = "email-extra-message error";
+            fieldInputClassName = "field-input error";
+        } else {
+            message = "youremail@domain.com";
+            pClassName = "email-extra-message";
+            fieldInputClassName = "field-input";
+        }
+
 
         return(
             <>
@@ -147,7 +167,7 @@ class TextInput extends React.Component {
                             </div>
                             <div className="input-container">
                                     <input type="email" 
-                                            className="field-input" 
+                                            className={fieldInputClassName} 
                                             onChange={this.onChangeEmail} 
                                             value={this.state.email} 
                                             onBlur={this.onBlur}
@@ -155,8 +175,9 @@ class TextInput extends React.Component {
                                     <div className={emailBoxClass}>
                                             Email address
                                     </div>
+                                    {this.state.emailError ? <span className="error-icon"><MdError size="24px" color="red" style={{position:"absolute", top: "30%", right: "8%"}}/></span> : null}
                                     <span className="border"></span>
-                                    <p>youremail@domain.com</p>
+                                    <p className={pClassName}>{message}</p>
                             </div>    
                             <button className="buttons">Submit</button>
                             <button className="buttons">Cancel</button>
