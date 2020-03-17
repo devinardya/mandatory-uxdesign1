@@ -7,34 +7,99 @@ class TextInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-                       theList : [ { text: "Username", 
-                                     infoText: "*Required",
-                                     id: 0,
-                                     }, 
-                                   { text: "Phone number", 
-                                     infoText: "XXX-XXXX",
-                                     id: 1,
-                                    },  
-                                   { text: "Email address", 
-                                     infoText: "youremail@domain.com",
-                                     id: 2,
-                                     }, ],
-                        value : "",
-
+                        email: "",
+                        phone: "",
+                        username: "",
+                        floatEmail:false,
+                        floatUsername:false,
+                        floatPhone:false,
         }
 
-        this.onChange = this.onChange.bind(this);
-     
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onBlur = this.onBlur.bind(this);
     }
 
-    onChange(e){
-       console.log(e.target.value)
-        this.setState({value: e.target.value})
+    onChangeUsername(e){
+         this.setState({
+          username: e.target.value,
+          floatUsername: true,
+        });
+    } 
+
+    onChangePhone(e){
+        this.setState({
+         phone: e.target.value,
+         floatPhone: true,
+       });
+   } 
+
+   onChangeEmail(e){
+    this.setState({
+        email: e.target.value,
+        floatEmail: true,
+   });
+} 
+
+
+    onBlur() {
+        setTimeout(() => {
+            if(this.state.username.length === 0) {
+                this.setState({
+                    username: "",
+                    floatUsername: false,
+                   
+                });
+            } else {
+                this.setState({floatUsername: true})
+            } 
+
+            if(this.state.email.length === 0) {
+                this.setState({
+                    email: "",
+                    floatEmail: false,
+                  
+                });
+            } else {
+                this.setState({floatUsername: true})
+            }
+
+            if(this.state.phone.length === 0) {
+                this.setState({
+                   phone: "",
+                   
+                    floatPhone: false,
+                   
+                });
+            } else {
+                this.setState({floatUsername: true})
+            }
+        }, 0);
     }
 
+ 
 
     render(){
-        const inputList = this.state.theList;
+        //const inputList = this.state.theList;
+        let inputBoxClass;
+        if(this.state.floatPhone ) {
+            inputBoxClass = "input-box float"
+        } else {
+            inputBoxClass = "input-box"
+        }
+
+        if(this.state.floatEmail) {
+            inputBoxClass = "input-box float"
+        } else {
+            inputBoxClass = "input-box"
+        }
+
+        if(this.state.floatUsername ) {
+            inputBoxClass = "input-box float"
+        } else {
+            inputBoxClass = "input-box"
+        }
 
         return(
             <>
@@ -54,20 +119,46 @@ class TextInput extends React.Component {
                         </div>
                      </div>
                      <form>
-                        {inputList.map((input, idx) => {
-                         
-                            return (<div className="input-container" key={idx}>
-                                        <input className="field-input" onChange={this.onChange} />
-                                        <div className="input-box">
-                                             {input.text}
-                                        </div>
-                                        <span className="border"></span>
-                                        <p>{input.infoText}</p>
+                            <div className="input-container">
+                                    <input type="text" 
+                                            className="field-input" 
+                                            onChange={this.onChangeUsername} 
+                                            value={this.state.username} 
+                                            onBlur={this.onBlur}
+                                            name="username"/>
+                                    <div className={inputBoxClass}>
+                                            Username *
                                     </div>
-                                    )
-                        
-                            
-                            })}
+                                    <span className="border"></span>
+                                    <p>*Required</p> 
+                            </div>
+                            <div className="input-container">
+                                    <input type="text" 
+                                            className="field-input" 
+                                            onChange={this.onChangePhone} 
+                                            value={this.state.phone} 
+                                            onBlur={this.onBlur}
+                                            name="phone"/>
+                                    <div className={inputBoxClass}>
+                                            Phone number
+                                    </div>
+                                    <span className="border"></span>
+                                    <p>XXX-XXXX</p>
+                            </div>
+                            <div className="input-container">
+                                    <input type="email" 
+                                            className="field-input" 
+                                            onChange={this.onChangeEmail} 
+                                            value={this.state.email} 
+                                            onBlur={this.onBlur}
+                                            name="email"/>
+                                    <div className={inputBoxClass}>
+                                            Email address
+                                    </div>
+                                    <span className="border"></span>
+                                    <p>youremail@domain.com</p>
+                            </div>
+                                   
                      </form>
                  </div>
             </>
