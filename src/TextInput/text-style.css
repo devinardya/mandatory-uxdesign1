@@ -5,9 +5,9 @@
 
 .box-container {
     width: 400px;
-    height: 500px;
+    height: 550px;
     background-color: rgb(240, 240, 240);
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
@@ -70,8 +70,8 @@ form {
 
 .input-container {
     width: 80%;
-    height: 20%;
-    margin: 12px 0;
+    height: 13%;
+    margin: 16px 0;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -83,10 +83,12 @@ input {
     width: 75%;
    }
 
-.input-box{
+.phone-box, .email-box, .username-box{
     position: absolute;
     margin-left: 16px;
+    top: 50%;
     transform: translateY(-50%);
+    font-size: 0.9rem;
 }
 
 .input-container:first-child {
@@ -99,12 +101,14 @@ input {
     align-self: flex-start;
     padding-top: 5px;
     padding-left: 16px;
+    position: absolute;
+    bottom: -15px;
 }
 
 .field-input {
     width: calc(100% - 32px);
     height: 75%;
-    padding: 0 16px;
+    padding: 20px 16px 6px 16px;
     border-radius: 5px 5px 0 0;
     background-color: rgb(216, 216, 216);
     display: flex;
@@ -112,13 +116,15 @@ input {
     justify-content: center;
     align-items: flex-start;
     border: 0;
-    border-bottom: 1px solid #ccc;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    color: #353535;
 }
+
+
 
 .field-input ~ .border {
     position: absolute;
-    bottom: 16px;
+    bottom: 0px;
     left: 0;
     width: 0;
     height: 2px;
@@ -130,7 +136,15 @@ input {
     transition: 0.5s;
 }
 
-.field-input:focus ~ .input-box {
+.field-input:focus ~ .email-box, .field-input:focus ~ .username-box {
+    font-size: 0.7rem;
+    position: absolute;
+    top: 15px;
+    transition: 0.5s;
+    color:  #077775;
+}
+
+.phone-box.float, .email-box.float, .username-box.float{
     font-size: 0.7rem;
     position: absolute;
     top: 13px;
@@ -138,25 +152,32 @@ input {
     color:  #077775;
 }
 
-.input-box.float{
+.field-input:blur ~ .phone-box.float, .field-input:blur ~ .username-box.float, .field-input:blur ~ .email-box.float{
     font-size: 0.7rem;
     position: absolute;
-    top: 13px;
+    top: 15px;
     transition: 0.5s;
     color:  #077775;
 }
 
-.field-input:blur ~ .input-box.float{
-    font-size: 0.7rem;
-    position: absolute;
-    top: 13px;
-    transition: 0.5s;
-    color:  #077775;
-}
-
-.field-input:blur ~ .input-box{
+.field-input:blur ~ .phone-box, .field-input:blur ~ .email-box, .field-input:blur ~ .username-box{
     position: absolute;
     margin-left: 16px;
     font-size: 1rem;
     transition: 0.5s;
+}
+
+.buttons {
+    width: 80%;
+    height: 40px;
+    margin-top: 24px;
+    border: none;
+    background-color: #10aca9;
+    color: #fff;
+}
+
+.buttons:last-of-type {
+    margin-top: 8px;
+    background-color: rgb(212, 212, 212);
+    color: #737373;
 }

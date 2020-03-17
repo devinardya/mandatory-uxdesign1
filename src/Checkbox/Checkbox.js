@@ -4,7 +4,7 @@ class Checkbox extends React.Component {
     render(){
         return(
             <>
-                 <h1>Checkbox</h1> 
+                 <h2>Checkbox</h2> 
             </>
         );
     }

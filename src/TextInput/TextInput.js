@@ -59,21 +59,18 @@ class TextInput extends React.Component {
                 this.setState({
                     email: "",
                     floatEmail: false,
-                  
                 });
             } else {
-                this.setState({floatUsername: true})
+                this.setState({floatEmail: true})
             }
 
             if(this.state.phone.length === 0) {
                 this.setState({
                    phone: "",
-                   
-                    floatPhone: false,
-                   
+                   floatPhone: false,
                 });
             } else {
-                this.setState({floatUsername: true})
+                this.setState({floatPhone: true})
             }
         }, 0);
     }
@@ -82,28 +79,31 @@ class TextInput extends React.Component {
 
     render(){
         //const inputList = this.state.theList;
-        let inputBoxClass;
+        let emailBoxClass;
+        let usernameBoxClass;
+        let phoneBoxClass;
+
         if(this.state.floatPhone ) {
-            inputBoxClass = "input-box float"
+            phoneBoxClass = "phone-box float"
         } else {
-            inputBoxClass = "input-box"
+            phoneBoxClass = "phone-box"
         }
 
         if(this.state.floatEmail) {
-            inputBoxClass = "input-box float"
+            emailBoxClass = "email-box float"
         } else {
-            inputBoxClass = "input-box"
+            emailBoxClass = "email-box"
         }
 
         if(this.state.floatUsername ) {
-            inputBoxClass = "input-box float"
+            usernameBoxClass = "username-box float"
         } else {
-            inputBoxClass = "input-box"
+            usernameBoxClass = "username-box"
         }
 
         return(
             <>
-                 <h1>Text Field</h1> 
+                 <h2>Text Field</h2> 
                  <div className="box-container">
                      <div className="top-appbar">
                         <div className="top-block">
@@ -125,9 +125,9 @@ class TextInput extends React.Component {
                                             onChange={this.onChangeUsername} 
                                             value={this.state.username} 
                                             onBlur={this.onBlur}
-                                            name="username"/>
-                                    <div className={inputBoxClass}>
-                                            Username *
+                                            />
+                                    <div className={usernameBoxClass}>
+                                            Username*
                                     </div>
                                     <span className="border"></span>
                                     <p>*Required</p> 
@@ -138,8 +138,8 @@ class TextInput extends React.Component {
                                             onChange={this.onChangePhone} 
                                             value={this.state.phone} 
                                             onBlur={this.onBlur}
-                                            name="phone"/>
-                                    <div className={inputBoxClass}>
+                                            disabled/>
+                                    <div className={phoneBoxClass}>
                                             Phone number
                                     </div>
                                     <span className="border"></span>
@@ -151,15 +151,17 @@ class TextInput extends React.Component {
                                             onChange={this.onChangeEmail} 
                                             value={this.state.email} 
                                             onBlur={this.onBlur}
-                                            name="email"/>
-                                    <div className={inputBoxClass}>
+                                           />
+                                    <div className={emailBoxClass}>
                                             Email address
                                     </div>
                                     <span className="border"></span>
                                     <p>youremail@domain.com</p>
-                            </div>
-                                   
+                            </div>    
+                            <button className="buttons">Submit</button>
+                            <button className="buttons">Cancel</button>
                      </form>
+                   
                  </div>
             </>
         );

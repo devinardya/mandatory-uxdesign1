@@ -4,7 +4,7 @@ class Radio extends React.Component {
     render(){
         return(
             <>
-                 <h1>Radio</h1> 
+                 <h2>Radio</h2> 
             </>
         );
     }
