@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+  color: #737373;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +50,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.options-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.option {
+  margin: 0 10px;
+}
+
+.option:hover {
+  cursor: pointer;
+  color: orange;
 }
