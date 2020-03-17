@@ -10,60 +10,28 @@ class TextInput extends React.Component {
                        theList : [ { text: "Username", 
                                      infoText: "*Required",
                                      id: 0,
-                                     inputBoxStatus : false,}, 
+                                     }, 
                                    { text: "Phone number", 
                                      infoText: "XXX-XXXX",
                                      id: 1,
-                                     inputBoxStatus : false,},  
+                                    },  
                                    { text: "Email address", 
                                      infoText: "youremail@domain.com",
                                      id: 2,
-                                     inputBoxStatus : false,}, ],
+                                     }, ],
+                        value : "",
 
         }
 
-        this.inputChange = this.inputChange.bind(this);
-        this.inputOn = this.inputOn.bind(this);
+        this.onChange = this.onChange.bind(this);
+     
     }
 
-    inputChange(index){
-        console.log(index)
-       
-        const buttonIndex = this.state.theList.findIndex (x => x.id === index);
-        // console.log(buttonIndex)
-          const data = [...this.state.theList];
-        
-        console.log("the curent data", data)
-        //console.log(data[buttonIndex])
-        data[buttonIndex] = {
-            text: data[buttonIndex].text,
-            infoText : data[buttonIndex].infoText,
-            id : data[buttonIndex].id,
-            inputBoxStatus : data[buttonIndex].inputBoxStatus === false ? true : false,
-        }
-
-        this.setState({theList: data})
-        
+    onChange(e){
+       console.log(e.target.value)
+        this.setState({value: e.target.value})
     }
-    
-    inputOn(index) {
-        console.log(index)
-       
-        const buttonIndex = this.state.theList.findIndex (x => x.id === index);
-        // console.log(buttonIndex)
-          const data = [...this.state.theList];
-        
-        console.log("the curent data", data)
-        //console.log(data[buttonIndex])
-        data[buttonIndex] = {
-            text: data[buttonIndex].text,
-            infoText : data[buttonIndex].infoText,
-            id : data[buttonIndex].id,
-            inputBoxStatus : true,
-        }
 
-        this.setState({theList: data})
-    }
 
     render(){
         const inputList = this.state.theList;
@@ -87,26 +55,13 @@ class TextInput extends React.Component {
                      </div>
                      <form>
                         {inputList.map((input, idx) => {
-                            let boxClassName;
-                            let inputType;
-                            /* console.log(input) */
-
-                            if(input.inputBoxStatus){
-                                console.log("it's active")
-                                inputType = "text"
-                               /*  boxClassName = "show active" */
-                            } else {
-                                inputType = "hidden"
-                               /*  boxClassName = "show" */
-                            }
                          
                             return (<div className="input-container" key={idx}>
-                                        
-                                        <div className="input-box" onClick={()=> this.inputChange(idx)}>
-                                            <div className="cursor">{input.text}</div>
-                                            <input type={inputType} className={boxClassName} onClick={()=> this.inputOn(idx)}></input>
+                                        <input className="field-input" onChange={this.onChange} />
+                                        <div className="input-box">
+                                             {input.text}
                                         </div>
-                                        
+                                        <span className="border"></span>
                                         <p>{input.infoText}</p>
                                     </div>
                                     )
