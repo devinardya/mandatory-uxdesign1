@@ -83,22 +83,24 @@ form {
 
 input {
     width: 75%;
+    background-color: transparent;
+    border:none;
 }
 
-.field-input:hover {
+.input-container__field-input:hover {
     cursor: pointer;
 }
 
 
-.field-input:disabled {
+.input-container__field-input:disabled {
     cursor: not-allowed;
 }
 
-.phone-box {
+.input-container__phone-box {
     color: #9c9c9c;
 }
 
-.phone-box, .email-box, .username-box{
+.input-container__phone-box, .input-container__email-box, .input-container__username-box{
     position: absolute;
     margin-left: 16px;
     top: 50%;
@@ -110,7 +112,7 @@ input {
     margin-top: 40px;
 }
 
-.input-container > p, .email-extra-message {
+.input-container > p, .input-container__email-extra-message {
     font-size: 0.6rem;
     margin: 0;
     align-self: flex-start;
@@ -120,11 +122,15 @@ input {
     padding-left: 16px;
 }
 
-.email-extra-message.error {
+.input-container--pDisabled {
+    color: rgb(153, 153, 153);
+}
+
+.input-container__email-extra-message--error{
     color: rgb(170, 0, 0);
 }
 
-.field-input {
+.input-container__field-input, .input-container__field-input--error  {
     width: calc(100% - 32px);
     height: 75%;
     padding: 20px 16px 6px 16px;
@@ -140,7 +146,7 @@ input {
     z-index: 2;
 }
 
-.field-input ~ .border {
+.input-container__field-input ~ .input-container__border{
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -149,7 +155,7 @@ input {
     background-color:  #10aca9;
 }
 
-.field-input.error ~ .border {
+.input-container__field-input--error ~ .input-container__border {
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -158,12 +164,12 @@ input {
     background-color:  rgb(170, 0, 0);
 }
 
-.field-input:focus ~ .border {
+.input-container__field-input:focus ~ .input-container__border {
     width: 100%;
     transition: 0.5s;
 }
 
-.field-input:focus ~ .email-box, .field-input:focus ~ .username-box {
+.input-container__field-input:focus ~ .input-container__email-box, .input-container__field-input:focus ~ .input-container__username-box {
     font-size: 0.7rem;
     position: absolute;
     top: 15px;
@@ -171,7 +177,16 @@ input {
     color:  #077775;
 }
 
-.phone-box.float, .email-box.float, .username-box.float{
+.input-container__phone-box--float, .input-container__email-box--float, .input-container__username-box--float{
+    font-size: 0.7rem;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color:  #077775;
+}
+
+
+.input-container__field-input:blur ~ .input-container__phone-box--float, .input-container__field-input:blur ~ .input-container__username-box--float, .input-container__field-input:blur ~ .input-container__email-box--float{
     font-size: 0.7rem;
     position: absolute;
     top: 15px;
@@ -179,25 +194,16 @@ input {
     color:  #077775;
 }
 
-
-.field-input:blur ~ .phone-box.float, .field-input:blur ~ .username-box.float, .field-input:blur ~ .email-box.float{
-    font-size: 0.7rem;
-    position: absolute;
-    top: 15px;
-    transition: 0.5s;
-    color:  #077775;
-}
-
-.field-input.error ~ .email-box.float {
+.input-container__field-input--error ~ .input-container__email-box--float, .input-container__field-input--error ~ .input-container__username-box--float {
     color: rgb(170, 0, 0);
     transition: 0s;
 }
 
-.field-input:blur ~ .phone-box, .field-input:blur ~ .email-box, .field-input:blur ~ .username-box{
+.input-container__field-input:blur ~ .input-container__phone-box, .input-container__field-input:blur ~ .input-container__email-box, .input-container__field-input:blur ~ .input-container__username-box{
     position: absolute;
     margin-left: 16px;
     font-size: 1rem;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .buttons {

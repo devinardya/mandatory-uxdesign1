@@ -100,41 +100,41 @@ class TextInput extends React.Component {
         let usernameFieldInputClassName;
 
         if(this.state.floatPhone ) {
-            phoneBoxClass = "phone-box float";
+            phoneBoxClass = "input-container__phone-box--float";
         } else {
-            phoneBoxClass = "phone-box";
+            phoneBoxClass = "input-container__phone-box";
         }
 
         if(this.state.floatEmail) {
-            emailBoxClass = "email-box float";
+            emailBoxClass = "input-container__email-box--float";
         } else {
-            emailBoxClass = "email-box";
+            emailBoxClass = "input-container__email-box";
         }
 
         if(this.state.floatUsername ) {
-            usernameBoxClass = "username-box float";
+            usernameBoxClass = "input-container__username-box--float";
         } else {
-            usernameBoxClass = "username-box";
+            usernameBoxClass = "input-container__username-box";
         }
 
         if(this.state.emailError) {
             emailMessage = "Please enter valid email address";
-            pClassName = "email-extra-message error";
-            emailFieldInputClassName = "field-input error";
+            pClassName = "input-container__email-extra-message--error";
+            emailFieldInputClassName = "input-container__field-input--error";
         } else {
             emailMessage = "youremail@domain.com";
-            pClassName = "email-extra-message";
-            emailFieldInputClassName = "field-input";
+            pClassName = "input-container__email-extra-message";
+            emailFieldInputClassName = "input-container__field-input";
         }
 
         if(this.state.usernameError) {
             usernameMessage = "Error: At least 8 characters";
-            usernamePClassName = "email-extra-message error";
-            usernameFieldInputClassName = "field-input error"; 
+            usernamePClassName = "input-container__email-extra-message--error";
+            usernameFieldInputClassName = "input-container__field-input--error"; 
         } else {
             usernameMessage = "*Required";
-            usernamePClassName = "email-extra-message";
-            usernameFieldInputClassName = "field-input";
+            usernamePClassName = "input-container__email-extra-message";
+            usernameFieldInputClassName = "input-container__field-input";
         }
 
 
@@ -164,24 +164,24 @@ class TextInput extends React.Component {
                                             onBlur={this.onBlur}
                                             />
                                     <div className={usernameBoxClass}>
-                                            <span>Username*</span>
+                                            Username*
                                     </div>
                                     {this.state.usernameError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "30%", right: "8%"}}/></span> : null}
-                                    <span className="border"></span>
+                                    <span className="input-container__border"></span>
                                     <p className={usernamePClassName}>{usernameMessage}</p>
                             </div>
                             <div className="input-container">
                                     <input type="text" 
-                                            className="field-input" 
+                                            className="input-container__field-input" 
                                             onChange={this.onChangePhone} 
                                             value={this.state.phone} 
                                             onBlur={this.onBlur}
                                             disabled/>
                                     <div className={phoneBoxClass}>
-                                            <span>Phone number</span>
+                                            Phone number
                                     </div>
-                                    <span className="border"></span>
-                                    <p>XXX-XXXX</p>
+                                    <span className="input-container__border"></span>
+                                    <p className="input-container--pDisabled">Disabled</p>
                             </div>
                             <div className="input-container">
                                     <input type="email" 
@@ -191,10 +191,10 @@ class TextInput extends React.Component {
                                             onBlur={this.onBlur}
                                            />
                                     <div className={emailBoxClass}>
-                                            <span>Email address</span>
+                                            Email address
                                     </div>
                                     {this.state.emailError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "30%", right: "8%"}}/></span> : null}
-                                    <span className="border"></span>
+                                    <span className="input-container__border"></span>
                                     <p className={pClassName}>{emailMessage}</p>
                             </div>    
                             <button className="buttons">Submit</button>
