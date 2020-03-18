@@ -77,11 +77,18 @@ form {
     justify-content: center;
     align-items: flex-start;
     position: relative;
+    border-radius: 5px 5px 0 0;
+    background-color: rgb(216, 216, 216);
 }
 
 input {
     width: 75%;
 }
+
+.field-input:hover {
+    cursor: pointer;
+}
+
 
 .field-input:disabled {
     cursor: not-allowed;
@@ -110,10 +117,11 @@ input {
     padding-top: 5px;
     position: absolute;
     bottom: -15px;
+    padding-left: 16px;
 }
 
 .email-extra-message.error {
-    color: red;
+    color: rgb(170, 0, 0);
 }
 
 .field-input {
@@ -121,7 +129,7 @@ input {
     height: 75%;
     padding: 20px 16px 6px 16px;
     border-radius: 5px 5px 0 0;
-    background-color: rgb(216, 216, 216);
+    background-color: transparent;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -129,9 +137,8 @@ input {
     border: 0;
     font-size: 0.7rem;
     color: #353535;
+    z-index: 2;
 }
-
-
 
 .field-input ~ .border {
     position: absolute;
@@ -148,7 +155,7 @@ input {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color:  red;
+    background-color:  rgb(170, 0, 0);
 }
 
 .field-input:focus ~ .border {
@@ -182,7 +189,7 @@ input {
 }
 
 .field-input.error ~ .email-box.float {
-    color: red;
+    color: rgb(170, 0, 0);
     transition: 0s;
 }
 
@@ -190,7 +197,7 @@ input {
     position: absolute;
     margin-left: 16px;
     font-size: 1rem;
-    transition: 0.5s;
+    transition: 1s;
 }
 
 .buttons {
@@ -209,4 +216,8 @@ input {
     background-color: rgb(212, 212, 212);
     color: #737373;
     margin-bottom: 32px;
+}
+
+.buttons:hover {
+    cursor: pointer;
 }
