@@ -20,19 +20,39 @@ class TextInput extends React.Component {
                         deleteInputIcon: false,
         }
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.clearInput = this.clearInput.bind(this);
         this.onBlur = this.onBlur.bind(this);
         this.onFocus = this.onFocus.bind(this);
     }
 
-    onChangeUsername(e){
+
+    clearInput() {
+    
+        this.setState({
+            username: "", 
+            usernameError: false,
+            deleteInputIcon: false,
+         
+        })
+        this.onFocus();
+        this.onBlur();
+       
+    }
+
+    onChange(e){
+
+        let name = e.target.name;
+
          this.setState({
-          username: e.target.value,
-          floatUsername: true,
+          [name]: e.target.value,
         });
+
+        if (name === "email") {
+           this.setState({floatEmail: true})
+        } else if (name === "username") {
+            this.setState({floatUsername: true})
+        }
 
         if(e.target.value.length !== 0) {
             this.setState({deleteInputIcon: true});
@@ -41,24 +61,10 @@ class TextInput extends React.Component {
         }
     } 
 
-    onChangePhone(e){
-        this.setState({
-         phone: e.target.value,
-         floatPhone: true,
-       });
-   } 
-
-   onChangeEmail(e){
-    this.setState({
-        email: e.target.value,
-        floatEmail: true,
-   });
-} 
-
-
     onBlur() {
         setTimeout(() => {
             if(this.state.username.length === 0) {
+              
                 this.setState({
                     username: "",
                     floatUsername: false,
@@ -66,16 +72,19 @@ class TextInput extends React.Component {
                     deleteInputIcon: false,
                 });
             } else {
-               if(this.state.username.length < 8){
+                
+               if(this.state.username.length < 8 ){
                     this.setState({
                         usernameError: true, 
+                    
                         //deleteInputIcon: false,
                     })
-                } else {
-                    this.setState({usernameError: false})
-                } 
+
+                    
                 this.setState({floatUsername: true})
+                console.log("on blur")
             } 
+        }
 
             if(this.state.email.length === 0) {
                 this.setState({
@@ -109,26 +118,20 @@ class TextInput extends React.Component {
 
     onFocus() {
        setTimeout( () => {
+           console.log("this is on focus")
+           console.log(this.state.username.length)
             if(this.state.username.length < 8) {
-                this.setState({usernameError: false, deleteInputIcon: true})
+                this.setState({usernameError: false})
             }
 
        }, 0)
     }
 
-    clearInput() {
-        if(this.state.username) {
-            this.setState({
-                username: "", 
-                usernameError: false,
-                deleteInputIcon: false})
-        }
-    }
 
  
-
+ 
     render(){
-        //const inputList = this.state.theList;
+
         let emailBoxClass;
         let usernameBoxClass;
         let phoneBoxClass;
@@ -202,8 +205,11 @@ class TextInput extends React.Component {
                             <div className="input-container" onBlur={this.onBlur} onFocus={this.onFocus}>
                                     <input type="text" 
                                             className={usernameFieldInputClassName} 
-                                            onChange={this.onChangeUsername} 
+                                            onChange={this.onChange} 
                                             value={this.state.username} 
+                                            onBlur={this.onBlur} 
+                                            onFocus={this.onFocus}
+                                            name="username"
                                             />
                                     <span className={usernameBoxClass}>
                                             Username*
@@ -225,9 +231,10 @@ class TextInput extends React.Component {
                             <div className="input-container">
                                     <input type="text" 
                                             className="input-container__field-input" 
-                                            onChange={this.onChangePhone} 
+                                            onChange={this.onChange} 
                                             value={this.state.phone} 
                                             onBlur={this.onBlur}
+                                            name="phone"
                                             disabled/>
                                     <span className={phoneBoxClass}>
                                             Phone number
@@ -238,9 +245,10 @@ class TextInput extends React.Component {
                             <div className="input-container">
                                     <input type="email" 
                                             className={emailFieldInputClassName} 
-                                            onChange={this.onChangeEmail} 
+                                            onChange={this.onChange} 
                                             value={this.state.email} 
                                             onBlur={this.onBlur}
+                                            name="email"
                                            />
                                     <span className={emailBoxClass}>
                                             Email address
