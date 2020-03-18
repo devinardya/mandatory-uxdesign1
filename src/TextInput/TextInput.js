@@ -2,6 +2,7 @@ import React from 'react';
 import './text-style.css';
 import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
 import {MdError} from "react-icons/md";
+import { TiDelete } from "react-icons/ti";
 
 class TextInput extends React.Component {
     
@@ -16,12 +17,15 @@ class TextInput extends React.Component {
                         floatPhone:false,
                         emailError: false,
                         usernameError: false,
+                        deleteInputIcon: false,
         }
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.clearInput = this.clearInput.bind(this);
         this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
     }
 
     onChangeUsername(e){
@@ -29,6 +33,12 @@ class TextInput extends React.Component {
           username: e.target.value,
           floatUsername: true,
         });
+
+        if(e.target.value.length !== 0) {
+            this.setState({deleteInputIcon: true});
+        } else {
+            this.setState({deleteInputIcon: false});
+        }
     } 
 
     onChangePhone(e){
@@ -53,11 +63,17 @@ class TextInput extends React.Component {
                     username: "",
                     floatUsername: false,
                     usernameError: false,
+                    deleteInputIcon: false,
                 });
             } else {
-                if(this.state.username.length < 8){
-                    this.setState({usernameError: true})
-                }
+               if(this.state.username.length < 8){
+                    this.setState({
+                        usernameError: true, 
+                        //deleteInputIcon: false,
+                    })
+                } else {
+                    this.setState({usernameError: false})
+                } 
                 this.setState({floatUsername: true})
             } 
 
@@ -68,8 +84,14 @@ class TextInput extends React.Component {
                     emailError: false,
                 });
             } else {
-                if(!this.state.email.includes("@")) {
+
+                let Regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                const badEmailInput = Regex.test(this.state.email);
+
+                if(!badEmailInput) {
                     this.setState({emailError: true})
+                } else {
+                    this.setState({emailError: false})
                 }
                 this.setState({floatEmail: true})
             }
@@ -85,6 +107,24 @@ class TextInput extends React.Component {
         }, 0);
     }
 
+    onFocus() {
+       setTimeout( () => {
+            if(this.state.username.length < 8) {
+                this.setState({usernameError: false, deleteInputIcon: true})
+            }
+
+       }, 0)
+    }
+
+    clearInput() {
+        if(this.state.username) {
+            this.setState({
+                username: "", 
+                usernameError: false,
+                deleteInputIcon: false})
+        }
+    }
+
  
 
     render(){
@@ -98,6 +138,7 @@ class TextInput extends React.Component {
         let usernamePClassName;
         let emailFieldInputClassName;
         let usernameFieldInputClassName;
+        let spanClassName;
 
         if(this.state.floatPhone ) {
             phoneBoxClass = "input-container__phone-box--float";
@@ -128,16 +169,18 @@ class TextInput extends React.Component {
         }
 
         if(this.state.usernameError) {
-            usernameMessage = "Error: At least 8 characters";
+            usernameMessage = "Error: Username needs to be at least 8 characters";
             usernamePClassName = "input-container__email-extra-message--error";
             usernameFieldInputClassName = "input-container__field-input--error"; 
+            spanClassName = "input-container__delete-icon--error" 
         } else {
             usernameMessage = "*Required";
             usernamePClassName = "input-container__email-extra-message";
             usernameFieldInputClassName = "input-container__field-input";
+            spanClassName = "input-container__delete-icon" 
         }
 
-
+        
         return(
             <>
                  <h2>Text Field</h2> 
@@ -156,17 +199,26 @@ class TextInput extends React.Component {
                         </div>
                      </div>
                      <form>
-                            <div className="input-container">
+                            <div className="input-container" onBlur={this.onBlur} onFocus={this.onFocus}>
                                     <input type="text" 
                                             className={usernameFieldInputClassName} 
                                             onChange={this.onChangeUsername} 
                                             value={this.state.username} 
-                                            onBlur={this.onBlur}
                                             />
-                                    <div className={usernameBoxClass}>
+                                    <span className={usernameBoxClass}>
                                             Username*
-                                    </div>
-                                    {this.state.usernameError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "30%", right: "8%"}}/></span> : null}
+                                    </span>
+                                    {this.state.deleteInputIcon ? 
+                                        <span className={spanClassName} 
+                                              onClick={this.clearInput}>
+                                                    <TiDelete size="30px" style={{position:"absolute", top: "36%", right: "13px", zIndex:"6"}}/>
+                                        </span> : null}
+                                    {this.state.usernameError ? 
+                                        <span className="input-container--error-icon">
+                                            <MdError size="24px" color="rgb(170, 0, 0)" 
+                                                     style={{position:"absolute", 
+                                                     top: "40%", right: "16px"}}/>
+                                        </span> : null}
                                     <span className="input-container__border"></span>
                                     <p className={usernamePClassName}>{usernameMessage}</p>
                             </div>
@@ -177,9 +229,9 @@ class TextInput extends React.Component {
                                             value={this.state.phone} 
                                             onBlur={this.onBlur}
                                             disabled/>
-                                    <div className={phoneBoxClass}>
+                                    <span className={phoneBoxClass}>
                                             Phone number
-                                    </div>
+                                    </span>
                                     <span className="input-container__border"></span>
                                     <p className="input-container--pDisabled">Disabled</p>
                             </div>
@@ -190,10 +242,10 @@ class TextInput extends React.Component {
                                             value={this.state.email} 
                                             onBlur={this.onBlur}
                                            />
-                                    <div className={emailBoxClass}>
+                                    <span className={emailBoxClass}>
                                             Email address
-                                    </div>
-                                    {this.state.emailError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "30%", right: "8%"}}/></span> : null}
+                                    </span>
+                                    {this.state.emailError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "40%", right: "16px"}}/></span> : null}
                                     <span className="input-container__border"></span>
                                     <p className={pClassName}>{emailMessage}</p>
                             </div>    

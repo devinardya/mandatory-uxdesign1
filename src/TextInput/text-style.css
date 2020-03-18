@@ -39,6 +39,10 @@
     color: white;
 }
 
+.input-container__delete-icon--error {
+    color: transparent;
+}
+
 .bottom-block {
     width: 100%;
     height: 70%;
@@ -196,7 +200,7 @@ input {
 
 .input-container__field-input--error ~ .input-container__email-box--float, .input-container__field-input--error ~ .input-container__username-box--float {
     color: rgb(170, 0, 0);
-    transition: 0s;
+    transition: 0.5s;
 }
 
 .input-container__field-input:blur ~ .input-container__phone-box, .input-container__field-input:blur ~ .input-container__email-box, .input-container__field-input:blur ~ .input-container__username-box{
