@@ -13,9 +13,8 @@ class Switch extends React.Component {
     }
 
     checked = (e) => {
-        console.log("this happens")
+       
         let name = e.target.name;
-        console.log(name)
        
         if(name === "airplane"){
             if(this.state.airplane) {
@@ -42,8 +41,7 @@ class Switch extends React.Component {
 
 
     render(){
-       console.log("rendered")
-       console.log(this.state.wifi)
+
        let switchBlockMenu;
 
        if(this.state.airplane) {
@@ -51,8 +49,7 @@ class Switch extends React.Component {
        } else {
             switchBlockMenu = "switch-block--menu";
        }
-
-       console.log(switchBlockMenu)
+       
         return(
             <>
                  <h2>Switch</h2> 
@@ -65,10 +62,10 @@ class Switch extends React.Component {
                             <FaBatteryHalf style= {{marginRight: "16px"}}/>
                         </div>
                         <div className="bottom-block">
-                            <FaArrowLeft size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
-                            <h4>Settings</h4>
-                            <FaSearch color="#fff" style= {{marginRight: "16px"}} />
-                            <FaEllipsisV color="#fff" style= {{marginRight: "16px"}} />
+                              <FaArrowLeft size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
+                              <h4>Settings</h4>
+                              <FaSearch color="#fff" style= {{marginRight: "16px"}} />
+                              <FaEllipsisV color="#fff" style= {{marginRight: "0px"}} />
                         </div>
                      </div>
                     <div className="switch-block">

@@ -2,67 +2,6 @@
     outline: none;
    }
 
-
-.box-container {
-    width: auto;
-    height: 600px;
-    background-color: rgb(240, 240, 240);
-    margin: 20px auto;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-}
-
-.top-appbar {
-    height: 20%;
-    width: 100%;
-    background-color: #10aca9;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    align-items: center;
-    -webkit-box-shadow: 0px 4px 8px -1px rgba(153,153,153,1);
-    -moz-box-shadow: 0px 4px 8px -1px rgba(153,153,153,1);
-    box-shadow: 0px 4px 8px -1px rgba(153,153,153,1);  
-}
-
-.top-block {
-    width: 100%;
-    height: 30%;
-    background-color: #077775;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: white;
-}
-
-.input-container__delete-icon--error {
-    color: transparent;
-}
-
-.bottom-block {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.bottom-block > h4 {
-    padding-left: 18px;
-    color: #fff;
-    font-size: 1.2rem;
-    margin: 0;
-    vertical-align: middle;
-    line-height: 0;
-    width: 68%;
-    text-align: left;
-}
-
 form {
     width: 100%;
     height: 80%;
@@ -73,8 +12,8 @@ form {
 }
 
 .input-container {
-    width: 80%;
-    height: 13%;
+    width: 280px;
+    height: 56px;
     margin: 16px 0;
     display: flex;
     flex-flow: column wrap;
@@ -83,12 +22,37 @@ form {
     position: relative;
     border-radius: 5px 5px 0 0;
     background-color: rgb(216, 216, 216);
+    
 }
 
 input {
     width: 75%;
     background-color: transparent;
-    border:none;
+}
+
+.input-container__field-input, .input-container__field-input--error  {
+    width: calc(100% - 24px);
+    height: 75%;
+    padding: 20px 12px 6px 12px;
+    border-radius: 5px 5px 0 0;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: flex-start;
+    border: 0;
+    font-size: 16px;
+    color: #353535;
+    z-index: 2;
+}
+
+.input-container__field-input {
+    border-bottom: 1px solid #737373;
+}
+
+.input-container__field-input:focus {
+    border-bottom: 1px solid transparent;
+    transition: 0s;
 }
 
 .input-container__field-input:hover {
@@ -123,7 +87,7 @@ input {
     padding-top: 5px;
     position: absolute;
     bottom: -15px;
-    padding-left: 16px;
+    padding-left: 12px;
 }
 
 .input-container--pDisabled {
@@ -132,22 +96,6 @@ input {
 
 .input-container__email-extra-message--error{
     color: rgb(170, 0, 0);
-}
-
-.input-container__field-input, .input-container__field-input--error  {
-    width: calc(100% - 32px);
-    height: 75%;
-    padding: 20px 16px 6px 16px;
-    border-radius: 5px 5px 0 0;
-    background-color: transparent;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: flex-start;
-    border: 0;
-    font-size: 0.7rem;
-    color: #353535;
-    z-index: 2;
 }
 
 .input-container__field-input ~ .input-container__border{
@@ -174,24 +122,25 @@ input {
 }
 
 .input-container__field-input:focus ~ .input-container__email-box, .input-container__field-input:focus ~ .input-container__username-box {
-    font-size: 0.7rem;
+    font-size: 12px;
     position: absolute;
-    top: 15px;
+    top: 16px;
+    left:-4px;
     transition: 0.5s;
     color:  #077775;
 }
 
 .input-container__phone-box--float, .input-container__email-box--float, .input-container__username-box--float{
-    font-size: 0.7rem;
+    font-size: 12px;
     position: absolute;
     top: 8px;
-    left: 16px;
+    left: 12px;
     color:  #077775;
 }
 
 
 .input-container__field-input:blur ~ .input-container__phone-box--float, .input-container__field-input:blur ~ .input-container__username-box--float, .input-container__field-input:blur ~ .input-container__email-box--float{
-    font-size: 0.7rem;
+    font-size: 12px;
     position: absolute;
     top: 15px;
     transition: 0.5s;
@@ -205,8 +154,8 @@ input {
 
 .input-container__field-input:blur ~ .input-container__phone-box, .input-container__field-input:blur ~ .input-container__email-box, .input-container__field-input:blur ~ .input-container__username-box{
     position: absolute;
-    margin-left: 16px;
-    font-size: 1rem;
+    margin-left: 12px;
+    font-size: 16px;
     transition: 0.5s;
 }
 

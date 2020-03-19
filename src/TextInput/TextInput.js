@@ -54,7 +54,7 @@ class TextInput extends React.Component {
             this.setState({floatUsername: true})
         }
 
-        if(e.target.value.length !== 0) {
+        if(this.state.username.length !== 0) {
             this.setState({deleteInputIcon: true});
         } else {
             this.setState({deleteInputIcon: false});
@@ -94,7 +94,7 @@ class TextInput extends React.Component {
                 });
             } else {
 
-                let Regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
                 const badEmailInput = Regex.test(this.state.email);
 
                 if(!badEmailInput) {
@@ -199,7 +199,7 @@ class TextInput extends React.Component {
                             <FaArrowLeft size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
                             <h4>Sign up</h4>
                             <FaSearch color="#fff" style= {{marginRight: "16px"}} />
-                            <FaEllipsisV color="#fff" style= {{marginRight: "16px"}} />
+                            <FaEllipsisV color="#fff" style= {{marginRight: "0px"}} />
                         </div>
                      </div>
                      <form>
