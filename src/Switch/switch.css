@@ -1,7 +1,6 @@
 .switch-block {
     height: calc(80% - 40px);
     width: 100%;
-    background-color: aqua;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
@@ -9,16 +8,33 @@
     padding-top: 40px;
 }
 
-.switch-block--menu {
-    width: 85%;
-    height: 80px;
-    background-color: blue;
+.switch-block--menu, .switch-block--menu--disabled {
+    width: calc(85% - 40px);
+    height: 40px;
     margin: 10px 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px 10px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
+.switch-block--menu--disabled {
+    color: rgb(190, 190, 190);
+}
 
-.checkbox > input[type="checkbox"] {
-    border: 0;
+.switch-block--menu > h4 {
+    margin: 0;
+    color: #737373;
+}
+
+.switch-block--menu__toggleSwitch--checkbox--display:hover {
+    cursor: pointer;
+}
+
+.switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"] {
+    appearance: none;
     padding: 0;
     width: 1px;
     height: 1px;
@@ -27,36 +43,38 @@
     position: absolute;
     top: 1px;
     left: 1px;
+    border:0;
 }
 
-.checkbox > .fake{
+.switch-block--menu__toggleSwitch--checkbox > .switch-block--menu__toggleSwitch--checkbox--display{
     background: #d9d9d9;
     display: block;
-    width: 90px;
-    height: 35px;
+    width: 50px;
+    height: 20px;
     position: relative;
     z-index: 2;
-    border-radius: 40px;
+    border-radius: 30px;
     transition: all 0.1s linear;
 }
 
-.fake::before{
+.switch-block--menu__toggleSwitch--checkbox--display::before{
     background-color: grey;
     display: block;
-    width: 45px;
-    height: 45px;
+    width: 25px;
+    height: 25px;
     content: "";
     border-radius: 30px;
     position: absolute;
-    top:-5px;
+    top:-3px;
+    left: 0;
     transition: all 0.3s linear;
 }
 
-.checkbox > input[type="checkbox"]:checked + .fake::before {
+.switch-block--menu__toggleSwitch--checkbox   > input[type="checkbox"]:checked + .switch-block--menu__toggleSwitch--checkbox--display::before {
     background-color:purple;
     transform: translate(100%);
 }
 
-.checkbox > input[type="checkbox"]:checked + .fake {
+.switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked + .switch-block--menu__toggleSwitch--checkbox--display{
     background-color:palevioletred;
 }

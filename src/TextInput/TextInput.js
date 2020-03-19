@@ -1,7 +1,7 @@
 import React from 'react';
 import './text-style.css';
 import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
-import {MdError} from "react-icons/md";
+import { MdError, MdAirplanemodeInactive } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 
 class TextInput extends React.Component {
@@ -190,6 +190,7 @@ class TextInput extends React.Component {
                  <div className="box-container">
                      <div className="top-appbar">
                         <div className="top-block">
+                            <MdAirplanemodeInactive color="#aaaaaa" style= {{marginRight: "8px"}}/>
                             <FaSignal style= {{marginRight: "8px"}}/>
                             <FaWifi style= {{marginRight: "8px"}}/>
                             <FaBatteryHalf style= {{marginRight: "16px"}}/>

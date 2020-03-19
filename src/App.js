@@ -7,11 +7,13 @@ import Radio from '../src/Radio/Radio';
 
 function App() {
 
-  const [tab, updateTab] = useState("text");
+  const [tab, updateTab] = useState("switch");
 
   const tabChange = (inputTab) => {
       updateTab(inputTab);
   }
+
+
 
         let content;
 

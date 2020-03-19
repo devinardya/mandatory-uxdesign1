@@ -1,17 +1,67 @@
 import React from 'react';
 import './switch.css';
 import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
-
+import { MdAirplanemodeInactive, MdAirplanemodeActive} from "react-icons/md";
 class Switch extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state= {
+            airplane: false,
+            wifi: false,
+            disable: "",
+        } 
+    }
+
+    checked = (e) => {
+        console.log("this happens")
+        let name = e.target.name;
+        console.log(name)
+       
+        if(name === "airplane"){
+            if(this.state.airplane) {
+                this.setState({
+                    disable: "",
+                    airplane : false,
+                }) 
+            } else {
+                this.setState({
+                    disable: "disabled",
+                    airplane : true,
+                    wifi: false,
+                }) 
+            }
+            
+        } else if (name === "wifi") {
+            this.setState({
+                wifi : e.target.checked,
+            }) 
+        }
+       
+        
+    }
+
+
     render(){
+       console.log("rendered")
+       console.log(this.state.wifi)
+       let switchBlockMenu;
+
+       if(this.state.airplane) {
+            switchBlockMenu = "switch-block--menu--disabled"
+       } else {
+            switchBlockMenu = "switch-block--menu";
+       }
+
+       console.log(switchBlockMenu)
         return(
             <>
                  <h2>Switch</h2> 
                  <div className="box-container">
                      <div className="top-appbar">
                         <div className="top-block">
+                            {this.state.disable ? <MdAirplanemodeActive color="fff" style= {{marginRight: "8px"}}/> : <MdAirplanemodeInactive color="#AAAAAA" style= {{marginRight: "8px"}} />}
                             <FaSignal style= {{marginRight: "8px"}}/>
-                            <FaWifi style= {{marginRight: "8px"}}/>
+                            {this.state.wifi ? <FaWifi color="fff" style= {{marginRight: "8px"}} /> : <FaWifi color="#AAAAAA" style= {{marginRight: "8px"}} />}
                             <FaBatteryHalf style= {{marginRight: "16px"}}/>
                         </div>
                         <div className="bottom-block">
@@ -22,21 +72,35 @@ class Switch extends React.Component {
                         </div>
                      </div>
                     <div className="switch-block">
-                        <div className="switch-block--menu">
-                            <h2></h2>
+                    <div className="switch-block--menu">
+                            <p>Airplane mode</p>
+                            <div className="switch-block--menu__toggleSwitch">
+                                    <label className="switch-block--menu__toggleSwitch--checkbox">
+                                        <input type="checkbox" checked={this.state.airplane} onChange={this.checked} name="airplane"/>
+                                        <span className="switch-block--menu__toggleSwitch--checkbox--display"></span>
+                                    </label> 
+                            </div>
                         </div>
-                        <div className="switch-block--menu">
-
+                        <div className={switchBlockMenu}>
+                            <p>Wi-Fi</p>
+                            <div className="switch-block--menu__toggleSwitch">
+                                    <label className="switch-block--menu__toggleSwitch--checkbox">
+                                        <input type="checkbox" checked={this.state.wifi} onChange={this.checked} name="wifi" disabled={this.state.disable}/>
+                                        <span className="switch-block--menu__toggleSwitch--checkbox--display"></span>
+                                    </label> 
+                            </div>
+                        </div>
+                        <div className="switch-block--menu--disabled">
+                            <p>Turn on location</p>
+                            <div className="switch-block--menu__toggleSwitch">
+                                    <label className="switch-block--menu__toggleSwitch--checkbox">
+                                        <input type="checkbox" disabled/>
+                                        <span className="switch-block--menu__toggleSwitch--checkbox--display"></span>
+                                    </label> 
+                            </div>
                         </div>
                     </div>
-
-                     {/* <label class="checkbox">
-                        <input type="checkbox" />
-                        <span class="fake"></span>
-                    </label> */}
-                   
-                 </div>
-                
+                 </div>   
             </>
         );
     }
