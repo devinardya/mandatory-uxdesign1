@@ -72,10 +72,10 @@
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked + .switch-block--menu__toggleSwitch--checkbox--display::before {
-    background-color:purple;
+    background-color:#077775;
     transform: translate(100%);
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked + .switch-block--menu__toggleSwitch--checkbox--display{
-    background-color:palevioletred;
+    background-color: #10aca9;
 }

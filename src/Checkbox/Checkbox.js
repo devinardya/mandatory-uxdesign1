@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './checkbox.css';
 import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
@@ -7,7 +7,6 @@ import { MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } fro
 
 const Checkbox = () => {
 
-        //const dataList = ["Pickles", "Tomato", "Lettuce", "Cheese", "Extra Ketchup"];
         const [dataList, updateDataList] = useState([{name:"Pickles", checked: false, id:0},
                                                      {name:"Tomato", checked: false, id:1},
                                                      {name:"Lettuce", checked: false, id:2},
@@ -15,6 +14,22 @@ const Checkbox = () => {
                                                      {name:"Extra Ketchup", checked: false, id:4},
                                                     ]);
         const [activeChecked, updateActiveChecked] = useState(false);
+        const checkRef = useRef();
+      
+
+        useEffect(() => {
+            let copyData = [...dataList]
+            if(copyData.find((x)=> x.checked === true)) {
+                checkRef.current.indeterminate = true;
+            } else {
+                checkRef.current.indeterminate = false;
+            }
+
+            if (copyData.every((x) => x.checked !== false)) {
+                checkRef.current.indeterminate = false;
+            } 
+
+        }, [dataList])
 
         const toggleChecked = (index) => {
             //console.log(index)
@@ -63,7 +78,7 @@ const Checkbox = () => {
                         <ul className="checkbox-block__main-option">
                             <li>
                                 <label className="checkbox-block__main-option__list">
-                                    <input type="checkbox" checked={activeChecked} onChange={toggleAllChecked}/>
+                                    <input type="checkbox" checked={activeChecked} ref={checkRef} onChange={toggleAllChecked}/>
                                     <span className="checkbox-block__fakedisplay"></span>
                                         Additions
                                 </label>

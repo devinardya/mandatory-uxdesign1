@@ -73,5 +73,10 @@ li {
 .checkbox-block__sub-option__list > input[type="checkbox"]:checked + .checkbox-block__fakedisplay::before, 
 .checkbox-block__main-option__list > input[type="checkbox"]:checked + .checkbox-block__fakedisplay::before {
     content: "check_box";
-    color: #077775;
+    color: #10aca9;
+}
+
+.checkbox-block__main-option__list > input[type="checkbox"]:indeterminate + .checkbox-block__fakedisplay::before{
+    content: "indeterminate_check_box";
+    color:#10aca9;
 }
