@@ -1,7 +1,8 @@
 import React from 'react';
 import './text-style.css';
-import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
-import { MdError, MdAirplanemodeInactive } from "react-icons/md";
+import { FaSignal} from "react-icons/fa";
+import { IoIosBatteryFull } from "react-icons/io";
+import { MdError, MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 
 class TextInput extends React.Component {
@@ -190,16 +191,16 @@ class TextInput extends React.Component {
                  <div className="box-container">
                      <div className="top-appbar">
                         <div className="top-block">
-                            <MdAirplanemodeInactive color="#aaaaaa" style= {{marginRight: "8px"}}/>
-                            <FaSignal style= {{marginRight: "8px"}}/>
-                            <FaWifi style= {{marginRight: "8px"}}/>
-                            <FaBatteryHalf style= {{marginRight: "16px"}}/>
+                            <MdAirplanemodeInactive color="#aaaaaa" size="14px" style= {{marginRight: "8px"}}/>
+                            <FaSignal size="14px" style= {{marginRight: "8px"}}/>
+                            <MdWifi size="14px" style= {{marginRight: "8px"}}/>
+                            <IoIosBatteryFull size="14px" style= {{marginRight: "16px"}}/>
                         </div>
                         <div className="bottom-block">
-                            <FaArrowLeft size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
+                            <MdArrowBack size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
                             <h4>Sign up</h4>
-                            <FaSearch color="#fff" style= {{marginRight: "16px"}} />
-                            <FaEllipsisV color="#fff" style= {{marginRight: "0px"}} />
+                            <MdSearch size="24px" color="#fff" style= {{marginRight: "16px"}} />
+                            <MdMoreVert size="24px" color="#fff" style= {{marginRight: "12px"}} />
                         </div>
                      </div>
                      <form>

@@ -1,7 +1,10 @@
 import React from 'react';
 import './switch.css';
-import { FaWifi, FaBatteryHalf, FaSignal, FaArrowLeft, FaSearch, FaEllipsisV } from "react-icons/fa";
-import { MdAirplanemodeInactive, MdAirplanemodeActive} from "react-icons/md";
+import { FaSignal} from "react-icons/fa";
+import { IoIosBatteryFull } from "react-icons/io";
+import { MdAirplanemodeInactive, MdAirplanemodeActive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } from "react-icons/md";
+
+
 class Switch extends React.Component {
     constructor(props) {
         super(props);
@@ -49,23 +52,23 @@ class Switch extends React.Component {
        } else {
             switchBlockMenu = "switch-block--menu";
        }
-       
+
         return(
             <>
                  <h2>Switch</h2> 
                  <div className="box-container">
                      <div className="top-appbar">
                         <div className="top-block">
-                            {this.state.disable ? <MdAirplanemodeActive color="fff" style= {{marginRight: "8px"}}/> : <MdAirplanemodeInactive color="#AAAAAA" style= {{marginRight: "8px"}} />}
-                            <FaSignal style= {{marginRight: "8px"}}/>
-                            {this.state.wifi ? <FaWifi color="fff" style= {{marginRight: "8px"}} /> : <FaWifi color="#AAAAAA" style= {{marginRight: "8px"}} />}
-                            <FaBatteryHalf style= {{marginRight: "16px"}}/>
+                            {this.state.disable ? <MdAirplanemodeActive size="14px" color="fff" style= {{marginRight: "8px"}}/> : <MdAirplanemodeInactive size="14px" color="#AAAAAA" style= {{marginRight: "8px"}} />}
+                            <FaSignal size="14px" style= {{marginRight: "8px"}}/>
+                            {this.state.wifi ? <MdWifi size="14px" color="fff" style= {{marginRight: "8px"}} /> : <MdWifi size="14px" color="#AAAAAA" style= {{marginRight: "8px"}} />}
+                            <IoIosBatteryFull size="14px" style= {{marginRight: "16px"}}/>
                         </div>
                         <div className="bottom-block">
-                              <FaArrowLeft size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
+                              <MdArrowBack size="24px" color="#fff" style= {{marginLeft: "16px"}}/>
                               <h4>Settings</h4>
-                              <FaSearch color="#fff" style= {{marginRight: "16px"}} />
-                              <FaEllipsisV color="#fff" style= {{marginRight: "0px"}} />
+                              <MdSearch size="24px" color="#fff" style= {{marginRight: "16px"}} />
+                              <MdMoreVert size="24px" color="#fff" style= {{marginRight: "12px"}} />
                         </div>
                      </div>
                     <div className="switch-block">

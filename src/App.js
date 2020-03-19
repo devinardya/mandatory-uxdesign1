@@ -7,7 +7,7 @@ import Radio from '../src/Radio/Radio';
 
 function App() {
 
-  const [tab, updateTab] = useState("text");
+  const [tab, updateTab] = useState("checkboxes");
 
   const tabChange = (inputTab) => {
       updateTab(inputTab);
@@ -36,7 +36,7 @@ function App() {
                     <div onClick={ ()=> tabChange("checkboxes")} className="option">Checkboxes</div>
                     <div onClick={ ()=> tabChange("radio")} className="option">Radio Buttons</div>
                 </div>
-        <div>
+        <div className="App__content">
             {content}
         </div>
     </div>
