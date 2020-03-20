@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import TextField from '../src/TextInput/TextInput';
+import TextField from './TextField/TextField';
 import Switch from '../src/Switch/Switch';
 import Checkbox from '../src/Checkbox/Checkbox';
 import Radio from '../src/Radio/Radio'; 

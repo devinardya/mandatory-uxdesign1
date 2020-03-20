@@ -1,6 +1,6 @@
 :focus {
     outline: none;
-   }
+}
 
 form {
     width: 100%;
@@ -48,6 +48,7 @@ input {
 
 .input-container__field-input {
     border-bottom: 1px solid #737373;
+
 }
 
 .input-container__field-input:focus {
@@ -105,6 +106,15 @@ input {
     width: 0;
     height: 2px;
     background-color:  #10aca9;
+}
+
+.input-container__field-input--error:disabled ~ .input-container__border {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #a7a7a7;
 }
 
 .input-container__field-input--error ~ .input-container__border {

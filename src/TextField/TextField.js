@@ -2,9 +2,8 @@ import React from 'react';
 import './text-style.css';
 import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
-import { MdError, MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetoothDisabled } from "react-icons/md";
-import { TiDelete } from "react-icons/ti";
-import InputField from './InputField';
+import { MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetoothDisabled } from "react-icons/md";
+import InputElement from './InputElement';
 
 class TextInput extends React.Component {
     
@@ -21,6 +20,7 @@ class TextInput extends React.Component {
                         usernameError: false,
                         deleteInputIcon: false,
                         deleteEmailIcon: false,
+                        keepFloat: false,
         }
 
         this.onChange = this.onChange.bind(this);
@@ -31,34 +31,25 @@ class TextInput extends React.Component {
 
 
     clearInput(name) {
-        console.log(name)
-    
+
         if(name === "username"){
-            console.log("ENTER DELETE USERNAME")
-        this.setState({
-          username: "", 
-          usernameError: false,
-          deleteInputIcon: false,
-        
+     
+            this.setState({
+                username: "", 
+                usernameError: false,
+                deleteInputIcon: false,
+                keepFloat: true,
             })
-        
-        console.log(this.state.username.length)
         } else if (name === "email") {
             this.setState({
                 email: "", 
                 emailError: false,
                 deleteEmailIcon: false,
-                //floatUsername:true,
                   })
-              //this.onFocus();
-              //this.onBlur(); 
-              console.log("it deleted")
         }
     }
 
     onChange(value, name){
-
-        //let name = e.target.name;
 
          this.setState({
           [name]: value,
@@ -86,8 +77,7 @@ class TextInput extends React.Component {
 
     onFocus() {
         setTimeout( () => {
-            console.log("this is on focus")
-            console.log(this.state.email.length)
+
              if(this.state.username.length < 8) {
                  this.setState({usernameError: false})
              } 
@@ -98,6 +88,10 @@ class TextInput extends React.Component {
              if(!badEmailInput) {
                  this.setState({emailError: false, deleteEmailIcon: true})
              }
+
+             if(this.state.email.length === 0) {
+                this.setState({deleteEmailIcon: false})
+             }
          
         
  
@@ -105,11 +99,11 @@ class TextInput extends React.Component {
     }
 
     onBlur() {
-        console.log("blur happens")
+
         setTimeout(() => {
-            console.log(this.state.floatUsername)
+
            if (this.state.username.length === 0  ){
-                console.log("enter there")
+
                 this.setState({
                     //username: "",
                     floatUsername: false,
@@ -124,7 +118,7 @@ class TextInput extends React.Component {
                             floatUsername: true
                             //deleteInputIcon: false,
                         })
-                    console.log("on blur")
+
                 }  
              }
 
@@ -237,7 +231,7 @@ class TextInput extends React.Component {
                         </div>
                      </div>
                      <form>
-                        <InputField 
+                        <InputElement
                             fieldInputclassName={usernameFieldInputClassName} 
                             onChange={this.onChange} 
                             value={this.state.username} 
@@ -253,8 +247,9 @@ class TextInput extends React.Component {
                             pClassName={usernamePClassName}
                             boxClass={usernameBoxClass}
                             spanClassName={spanClassName}
+                            borderClass = "input-container__border"
                         />
-                            <InputField 
+                            <InputElement
                             fieldInputclassName={usernameFieldInputClassName} 
                             onChange={this.onChange} 
                             value={this.state.phone} 
@@ -265,9 +260,10 @@ class TextInput extends React.Component {
                             message="Disabled"
                             boxClass={phoneBoxClass}
                             spanClassName={spanClassName}
+                            borderClass = "input-container__border"
                             disabled
                         />
-                            <InputField 
+                            <InputElement 
                             fieldInputclassName={emailFieldInputClassName} 
                             onChange={this.onChange} 
                             value={this.state.email} 
@@ -283,6 +279,7 @@ class TextInput extends React.Component {
                             pClassName={pClassName}
                             boxClass={emailBoxClass}
                             spanClassName={spanClassName}
+                            borderClass = "input-container__border"
                         />
                         <button className="buttons">Submit</button>
                         <button className="buttons">Cancel</button>

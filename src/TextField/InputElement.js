@@ -2,7 +2,7 @@ import React from 'react';
 import { MdError} from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 
-class InputField extends React.Component {
+class InputElement extends React.Component {
 
     constructor(props) {
         super(props);
@@ -49,7 +49,7 @@ class InputField extends React.Component {
                 {this.props.deleteInputIcon ? 
                     <span className={this.props.spanClassName} 
                             onMouseDown={() => this.clearInput(this.props.name)}>
-                                <TiDelete size="30px" style={{position:"absolute", top: "36%", right: "13px", zIndex:"6"}}/>
+                                <TiDelete size="30px" style={{position:"absolute", top: "33%", right: "13px", zIndex:"6"}}/>
                     </span> : null}
                 {this.props.Error ? 
                     <span className="input-container--error-icon">
@@ -57,11 +57,11 @@ class InputField extends React.Component {
                                     style={{position:"absolute", 
                                     top: "40%", right: "16px"}}/>
                     </span> : null}
-                <span className="input-container__border"></span>
+                <span className={this.props.borderClass}></span>
                 <p className={this.props.pClassName}>{this.props.message}</p>
             </div>
         )
     }
 }
 
-export default InputField;
+export default InputElement;
