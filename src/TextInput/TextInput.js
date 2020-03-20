@@ -4,6 +4,7 @@ import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
 import { MdError, MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetoothDisabled } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
+import InputField from './InputField';
 
 class TextInput extends React.Component {
     
@@ -19,7 +20,7 @@ class TextInput extends React.Component {
                         emailError: false,
                         usernameError: false,
                         deleteInputIcon: false,
-                        onClearInput: false,
+                        deleteEmailIcon: false,
         }
 
         this.onChange = this.onChange.bind(this);
@@ -29,62 +30,76 @@ class TextInput extends React.Component {
     }
 
 
-    clearInput() {
-
-        // if(this.state.username.length < 8) {
-        //     this.setState({
-        //         onClearInput:true,
-        //        /*  username: "", 
-        //         usernameError: false,
-        //         deleteInputIcon: false, */
-        //     })
-        // } else {
-        //     this.setState({
-        //         username: "", 
-        //         usernameError: false,
-        //         deleteInputIcon: false,
-        //     })
-        // }
-
+    clearInput(name) {
+        console.log(name)
+    
+        if(name === "username"){
+            console.log("ENTER DELETE USERNAME")
         this.setState({
           username: "", 
           usernameError: false,
           deleteInputIcon: false,
+        
             })
-        this.onFocus();
-        this.onBlur();
-        console.log("it deleted")
-       
+        
+        console.log(this.state.username.length)
+        } else if (name === "email") {
+            this.setState({
+                email: "", 
+                emailError: false,
+                deleteEmailIcon: false,
+                //floatUsername:true,
+                  })
+              //this.onFocus();
+              //this.onBlur(); 
+              console.log("it deleted")
+        }
     }
 
-    onChange(e){
+    onChange(value, name){
 
-        let name = e.target.name;
+        //let name = e.target.name;
 
          this.setState({
-          [name]: e.target.value,
+          [name]: value,
         });
 
         if (name === "email") {
            this.setState({floatEmail: true})
+
+           if(value !== 0) {
+                this.setState({deleteEmailIcon: true});
+            } else {
+                this.setState({deleteEmailIcon: false});
+            }
+           
         } else if (name === "username") {
             this.setState({floatUsername: true})
-        }
 
-        if(this.state.username.length !== 0) {
-            this.setState({deleteInputIcon: true});
-        } else {
-            this.setState({deleteInputIcon: false});
+            if(value !== 0) {
+                this.setState({deleteInputIcon: true});
+            } else {
+                this.setState({deleteInputIcon: false});
+            }
         }
     } 
 
     onFocus() {
         setTimeout( () => {
             console.log("this is on focus")
-            console.log(this.state.username.length)
+            console.log(this.state.email.length)
              if(this.state.username.length < 8) {
                  this.setState({usernameError: false})
+             } 
+
+             let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+             const badEmailInput = Regex.test(this.state.email);
+
+             if(!badEmailInput) {
+                 this.setState({emailError: false, deleteEmailIcon: true})
              }
+         
+        
  
         }, 0)
     }
@@ -92,16 +107,16 @@ class TextInput extends React.Component {
     onBlur() {
         console.log("blur happens")
         setTimeout(() => {
-            if(this.state.username.length === 0) {
-              
+            console.log(this.state.floatUsername)
+           if (this.state.username.length === 0  ){
+                console.log("enter there")
                 this.setState({
-                    username: "",
+                    //username: "",
                     floatUsername: false,
                     usernameError: false,
                     deleteInputIcon: false,
                 });
             } else {
-                
                 
                 if(this.state.username.length < 8){
                         this.setState({
@@ -111,7 +126,7 @@ class TextInput extends React.Component {
                         })
                     console.log("on blur")
                 }  
-        }
+             }
 
             if(this.state.email.length === 0) {
                 this.setState({
@@ -125,7 +140,10 @@ class TextInput extends React.Component {
                 const badEmailInput = Regex.test(this.state.email);
 
                 if(!badEmailInput) {
-                    this.setState({emailError: true})
+                    this.setState({
+                        emailError: true,
+                        deleteEmailIcon: false,
+                    })
                 } else {
                     this.setState({emailError: false})
                 }
@@ -178,10 +196,12 @@ class TextInput extends React.Component {
             emailMessage = "Please enter valid email address";
             pClassName = "input-container__email-extra-message--error";
             emailFieldInputClassName = "input-container__field-input--error";
+            spanClassName = "input-container__delete-icon--error" 
         } else {
             emailMessage = "youremail@domain.com";
             pClassName = "input-container__email-extra-message";
             emailFieldInputClassName = "input-container__field-input";
+            spanClassName = "input-container__delete-icon" 
         }
 
         if(this.state.usernameError) {
@@ -217,63 +237,55 @@ class TextInput extends React.Component {
                         </div>
                      </div>
                      <form>
-                            <div className="input-container" onBlur={this.onBlur} onFocus={this.onFocus}>
-                                    <input type="text" 
-                                            className={usernameFieldInputClassName} 
-                                            onChange={this.onChange} 
-                                            value={this.state.username} 
-                                            onBlur={this.onBlur} 
-                                            onFocus={this.onFocus}
-                                            name="username"
-                                            />
-                                    <span className={usernameBoxClass}>
-                                            Username*
-                                    </span>
-                                    {this.state.deleteInputIcon ? 
-                                        <span className={spanClassName} 
-                                              onClick={this.clearInput}>
-                                                    <TiDelete size="30px" style={{position:"absolute", top: "36%", right: "13px", zIndex:"6"}}/>
-                                        </span> : null}
-                                    {this.state.usernameError ? 
-                                        <span className="input-container--error-icon">
-                                            <MdError size="24px" color="rgb(170, 0, 0)" 
-                                                     style={{position:"absolute", 
-                                                     top: "40%", right: "16px"}}/>
-                                        </span> : null}
-                                    <span className="input-container__border"></span>
-                                    <p className={usernamePClassName}>{usernameMessage}</p>
-                            </div>
-                            <div className="input-container">
-                                    <input type="text" 
-                                            className="input-container__field-input" 
-                                            onChange={this.onChange} 
-                                            value={this.state.phone} 
-                                            onBlur={this.onBlur}
-                                            name="phone"
-                                            disabled/>
-                                    <span className={phoneBoxClass}>
-                                            Phone number
-                                    </span>
-                                    <span className="input-container__border"></span>
-                                    <p className="input-container--pDisabled">Disabled</p>
-                            </div>
-                            <div className="input-container">
-                                    <input type="email" 
-                                            className={emailFieldInputClassName} 
-                                            onChange={this.onChange} 
-                                            value={this.state.email} 
-                                            onBlur={this.onBlur}
-                                            name="email"
-                                           />
-                                    <span className={emailBoxClass}>
-                                            Email address
-                                    </span>
-                                    {this.state.emailError ? <span className="error-icon"><MdError size="24px" color="rgb(170, 0, 0)" style={{position:"absolute", top: "40%", right: "16px"}}/></span> : null}
-                                    <span className="input-container__border"></span>
-                                    <p className={pClassName}>{emailMessage}</p>
-                            </div>    
-                            <button className="buttons">Submit</button>
-                            <button className="buttons">Cancel</button>
+                        <InputField 
+                            fieldInputclassName={usernameFieldInputClassName} 
+                            onChange={this.onChange} 
+                            value={this.state.username} 
+                            onBlur={this.onBlur}
+                            onFocus={this.onFocus}
+                            name= "username"
+                            clearInput= {this.clearInput}
+                            deleteInputIcon = {this.state.deleteInputIcon}
+                            floatUsername = {this.state.floatUsername}
+                            Error = {this.state.usernameError}
+                            text= "Username*"
+                            message={usernameMessage}
+                            pClassName={usernamePClassName}
+                            boxClass={usernameBoxClass}
+                            spanClassName={spanClassName}
+                        />
+                            <InputField 
+                            fieldInputclassName={usernameFieldInputClassName} 
+                            onChange={this.onChange} 
+                            value={this.state.phone} 
+                            onBlur={this.onBlur} 
+                            onFocus={this.onFocus}
+                            name= "username"
+                            text= "Phone number"
+                            message="Disabled"
+                            boxClass={phoneBoxClass}
+                            spanClassName={spanClassName}
+                            disabled
+                        />
+                            <InputField 
+                            fieldInputclassName={emailFieldInputClassName} 
+                            onChange={this.onChange} 
+                            value={this.state.email} 
+                            onBlur={this.onBlur} 
+                            onFocus={this.onFocus}
+                            name= "email"
+                            clearInput= {this.clearInput}
+                            deleteInputIcon = {this.state.deleteEmailIcon}
+                            floatUsername = {this.state.floatEmail}
+                            Error = {this.state.emailError}
+                            text= "Email address"
+                            message = {emailMessage}
+                            pClassName={pClassName}
+                            boxClass={emailBoxClass}
+                            spanClassName={spanClassName}
+                        />
+                        <button className="buttons">Submit</button>
+                        <button className="buttons">Cancel</button>
                      </form>
                    
                  </div>
