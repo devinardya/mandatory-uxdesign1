@@ -2,7 +2,7 @@ import React from 'react';
 import './radio.css';
 import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
-import { MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } from "react-icons/md";
+import { MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetoothDisabled } from "react-icons/md";
 
 
 class Radio extends React.Component {
@@ -15,6 +15,7 @@ class Radio extends React.Component {
                         <div className="top-block">
                             <MdAirplanemodeInactive color="#aaaaaa" size="14px" style= {{marginRight: "8px"}}/>
                             <FaSignal size="14px" style= {{marginRight: "8px"}}/>
+                            <MdBluetoothDisabled color="#aaaaaa" size="14px" style= {{marginRight: "8px"}}/>
                             <MdWifi size="14px" style= {{marginRight: "8px"}}/>
                             <IoIosBatteryFull size="14px" style= {{marginRight: "16px"}}/>
                         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import './text-style.css';
 import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
-import { MdError, MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } from "react-icons/md";
+import { MdError, MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetoothDisabled } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 
 class TextInput extends React.Component {
@@ -19,6 +19,7 @@ class TextInput extends React.Component {
                         emailError: false,
                         usernameError: false,
                         deleteInputIcon: false,
+                        onClearInput: false,
         }
 
         this.onChange = this.onChange.bind(this);
@@ -29,15 +30,30 @@ class TextInput extends React.Component {
 
 
     clearInput() {
-    
+
+        // if(this.state.username.length < 8) {
+        //     this.setState({
+        //         onClearInput:true,
+        //        /*  username: "", 
+        //         usernameError: false,
+        //         deleteInputIcon: false, */
+        //     })
+        // } else {
+        //     this.setState({
+        //         username: "", 
+        //         usernameError: false,
+        //         deleteInputIcon: false,
+        //     })
+        // }
+
         this.setState({
-            username: "", 
-            usernameError: false,
-            deleteInputIcon: false,
-         
-        })
+          username: "", 
+          usernameError: false,
+          deleteInputIcon: false,
+            })
         this.onFocus();
         this.onBlur();
+        console.log("it deleted")
        
     }
 
@@ -62,7 +78,19 @@ class TextInput extends React.Component {
         }
     } 
 
+    onFocus() {
+        setTimeout( () => {
+            console.log("this is on focus")
+            console.log(this.state.username.length)
+             if(this.state.username.length < 8) {
+                 this.setState({usernameError: false})
+             }
+ 
+        }, 0)
+    }
+
     onBlur() {
+        console.log("blur happens")
         setTimeout(() => {
             if(this.state.username.length === 0) {
               
@@ -74,17 +102,15 @@ class TextInput extends React.Component {
                 });
             } else {
                 
-               if(this.state.username.length < 8 ){
-                    this.setState({
-                        usernameError: true, 
-                    
-                        //deleteInputIcon: false,
-                    })
-
-                    
-                this.setState({floatUsername: true})
-                console.log("on blur")
-            } 
+                
+                if(this.state.username.length < 8){
+                        this.setState({
+                            usernameError: true, 
+                            floatUsername: true
+                            //deleteInputIcon: false,
+                        })
+                    console.log("on blur")
+                }  
         }
 
             if(this.state.email.length === 0) {
@@ -117,20 +143,6 @@ class TextInput extends React.Component {
         }, 0);
     }
 
-    onFocus() {
-       setTimeout( () => {
-           console.log("this is on focus")
-           console.log(this.state.username.length)
-            if(this.state.username.length < 8) {
-                this.setState({usernameError: false})
-            }
-
-       }, 0)
-    }
-
-
- 
- 
     render(){
 
         let emailBoxClass;
@@ -193,6 +205,7 @@ class TextInput extends React.Component {
                         <div className="top-block">
                             <MdAirplanemodeInactive color="#aaaaaa" size="14px" style= {{marginRight: "8px"}}/>
                             <FaSignal size="14px" style= {{marginRight: "8px"}}/>
+                            <MdBluetoothDisabled color="#aaaaaa" size="14px" style= {{marginRight: "8px"}}/>
                             <MdWifi size="14px" style= {{marginRight: "8px"}}/>
                             <IoIosBatteryFull size="14px" style= {{marginRight: "16px"}}/>
                         </div>

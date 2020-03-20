@@ -2,7 +2,7 @@ import React from 'react';
 import './switch.css';
 import { FaSignal} from "react-icons/fa";
 import { IoIosBatteryFull } from "react-icons/io";
-import { MdAirplanemodeInactive, MdAirplanemodeActive, MdArrowBack, MdMoreVert, MdSearch, MdWifi } from "react-icons/md";
+import { MdAirplanemodeInactive, MdAirplanemodeActive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBluetooth, MdBluetoothDisabled} from "react-icons/md";
 
 
 class Switch extends React.Component {
@@ -11,6 +11,7 @@ class Switch extends React.Component {
         this.state= {
             airplane: false,
             wifi: false,
+            bluetooth: false,
             disable: "",
         } 
     }
@@ -30,16 +31,15 @@ class Switch extends React.Component {
                     disable: "disabled",
                     airplane : true,
                     wifi: false,
-                }) 
-            }
+                    bluetooth: false,
+                })          
+            }                                                                              
             
-        } else if (name === "wifi") {
+        } else {
             this.setState({
-                wifi : e.target.checked,
-            }) 
-        }
-       
-        
+                [name] : e.target.checked,
+            })
+        }  
     }
 
 
@@ -61,6 +61,7 @@ class Switch extends React.Component {
                         <div className="top-block">
                             {this.state.disable ? <MdAirplanemodeActive size="14px" color="fff" style= {{marginRight: "8px"}}/> : <MdAirplanemodeInactive size="14px" color="#AAAAAA" style= {{marginRight: "8px"}} />}
                             <FaSignal size="14px" style= {{marginRight: "8px"}}/>
+                            {this.state.bluetooth ? <MdBluetooth size="14px" color="fff" style= {{marginRight: "8px"}} /> : <MdBluetoothDisabled size="14px" color="#AAAAAA" style= {{marginRight: "8px"}} />}
                             {this.state.wifi ? <MdWifi size="14px" color="fff" style= {{marginRight: "8px"}} /> : <MdWifi size="14px" color="#AAAAAA" style= {{marginRight: "8px"}} />}
                             <IoIosBatteryFull size="14px" style= {{marginRight: "16px"}}/>
                         </div>
@@ -86,6 +87,15 @@ class Switch extends React.Component {
                             <div className="switch-block--menu__toggleSwitch">
                                     <label className="switch-block--menu__toggleSwitch--checkbox">
                                         <input type="checkbox" checked={this.state.wifi} onChange={this.checked} name="wifi" disabled={this.state.disable}/>
+                                        <span className="switch-block--menu__toggleSwitch--checkbox--display"></span>
+                                    </label> 
+                            </div>
+                        </div>
+                        <div className={switchBlockMenu}>
+                            <p>Bluetooth</p>
+                            <div className="switch-block--menu__toggleSwitch">
+                                    <label className="switch-block--menu__toggleSwitch--checkbox">
+                                        <input type="checkbox" checked={this.state.bluetooth} onChange={this.checked} name="bluetooth" disabled={this.state.disable}/>
                                         <span className="switch-block--menu__toggleSwitch--checkbox--display"></span>
                                     </label> 
                             </div>

@@ -27,6 +27,7 @@ li {
 
 .checkbox-block {
     width: 80%;
+    height: 420px;
     text-align: left;
     margin-top: 20px;
 }
@@ -41,21 +42,20 @@ li {
 }
 
 .checkbox-block__sub-option__list > input[type="checkbox"], .checkbox-block__main-option__list > input[type="checkbox"]{
-    appearance: none;
+    clip: rect(0 0 0 0);
     padding: 0;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: -2px;
+    left: -42px;
     border:0;
 }
 
 .checkbox-block__fakedisplay::before{
     display: block;
-    border-radius: 30px;
+    border-radius: 0px;
     position: absolute;
     top:8px;
     left: -44px;
@@ -64,6 +64,12 @@ li {
     text-transform: lowercase;
     font-size: 24px;
     color: #a5a5a5;
+}
+
+.checkbox-block__sub-option__list > input[type="checkbox"]:focus +  .checkbox-block__fakedisplay::before,
+.checkbox-block__main-option__list > input[type="checkbox"]:focus +  .checkbox-block__fakedisplay::before {
+    border: 1px solid #077775;
+  
 }
 
 .checkbox-block__sub-option__list:hover, .checkbox-block__main-option__list:hover {
