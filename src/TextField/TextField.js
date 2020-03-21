@@ -103,8 +103,8 @@ class TextInput extends React.Component {
         setTimeout(() => {
             console.log(this.state.keepFloat)
            
-            if (this.state.username.length === 0){
-                console.log("THERE")
+            if (this.state.username.length === 0 && this.state.keepFloat){
+           
                 this.setState({
                     //username: "",
                     floatUsername: false,
@@ -155,6 +155,7 @@ class TextInput extends React.Component {
             }
         }, 0);
     }
+
 
     render(){
 
@@ -249,6 +250,7 @@ class TextInput extends React.Component {
                             boxClass={usernameBoxClass}
                             spanClassName={spanClassName}
                             borderClass = "input-container__border"
+                            onMouseUp = {this.onMouseUp}
                         />
                             <InputElement
                             fieldInputclassName={usernameFieldInputClassName} 

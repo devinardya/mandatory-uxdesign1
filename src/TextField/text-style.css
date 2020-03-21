@@ -75,6 +75,8 @@ input {
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.9rem;
+    left: 0px;
+    transition: 0.5s;
 }
 
 .input-container:first-child {
@@ -148,25 +150,9 @@ input {
     color:  #077775;
 }
 
-
-.input-container__field-input:blur ~ .input-container__phone-box--float, .input-container__field-input:blur ~ .input-container__username-box--float, .input-container__field-input:blur ~ .input-container__email-box--float{
-    font-size: 12px;
-    position: absolute;
-    top: 15px;
-    transition: 0.5s;
-    color:  #077775;
-}
-
 .input-container__field-input--error ~ .input-container__email-box--float, .input-container__field-input--error ~ .input-container__username-box--float {
     color: rgb(170, 0, 0);
     transition: color 0.5s;
-}
-
-.input-container__field-input:blur ~ .input-container__phone-box, .input-container__field-input:blur ~ .input-container__email-box, .input-container__field-input:blur ~ .input-container__username-box{
-    position: absolute;
-    margin-left: 12px;
-    font-size: 16px;
-    transition: all 0.5s;
 }
 
 .buttons {
