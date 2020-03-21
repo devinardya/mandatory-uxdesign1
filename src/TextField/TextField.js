@@ -103,7 +103,7 @@ class TextInput extends React.Component {
         setTimeout(() => {
             console.log(this.state.keepFloat)
            
-            if (this.state.username.length === 0 && this.state.keepFloat){
+            if (this.state.username.length === 0){
            
                 this.setState({
                     //username: "",
