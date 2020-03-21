@@ -38,8 +38,8 @@ class TextInput extends React.Component {
                 username: "", 
                 usernameError: false,
                 deleteInputIcon: false,
-                keepFloat: true,
             })
+            
         } else if (name === "email") {
             this.setState({
                 email: "", 
@@ -101,9 +101,10 @@ class TextInput extends React.Component {
     onBlur() {
 
         setTimeout(() => {
-
-           if (this.state.username.length === 0  ){
-
+            console.log(this.state.keepFloat)
+           
+            if (this.state.username.length === 0){
+                console.log("THERE")
                 this.setState({
                     //username: "",
                     floatUsername: false,
