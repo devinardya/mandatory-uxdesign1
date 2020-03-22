@@ -56,103 +56,102 @@ class TextInput extends React.Component {
         });
 
         if (name === "email") {
-           this.setState({floatEmail: true})
+           
 
-           if(value !== 0) {
+           if(value.length !== 0) {
                 this.setState({deleteEmailIcon: true});
             } else {
                 this.setState({deleteEmailIcon: false});
             }
+
+            if(this.state.emailError) {
+                this.setState({deleteEmailIcon:false})
+            }
+
            
         } else if (name === "username") {
-            this.setState({floatUsername: true})
+            
 
-            if(value !== 0) {
+            if(value.length !== 0) {
                 this.setState({deleteInputIcon: true});
             } else {
                 this.setState({deleteInputIcon: false});
             }
+
         }
     } 
 
-    onFocus() {
+    onFocus(name) {
+
         setTimeout( () => {
 
-             if(this.state.username.length < 8) {
-                 this.setState({usernameError: false})
-             } 
-
-             let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
-             const badEmailInput = Regex.test(this.state.email);
-
-             if(!badEmailInput) {
-                 this.setState({emailError: false, deleteEmailIcon: true})
-             }
-
-             if(this.state.email.length === 0) {
-                this.setState({deleteEmailIcon: false})
-             }
-         
-        
+            if(name === "email") {
+                if(this.state.emailError) {
+                    this.setState({deleteEmailIcon:false})
+                }
+            }
  
         }, 0)
     }
 
-    onBlur() {
+    onBlur(name) {
+
 
         setTimeout(() => {
-            console.log(this.state.keepFloat)
-           
-            if (this.state.username.length === 0){
-           
-                this.setState({
-                    //username: "",
-                    floatUsername: false,
-                    usernameError: false,
-                    deleteInputIcon: false,
-                });
-            } else {
-                
-                if(this.state.username.length < 8){
-                        this.setState({
-                            usernameError: true, 
-                            floatUsername: true
-                            //deleteInputIcon: false,
-                        })
-
-                }  
-             }
-
-            if(this.state.email.length === 0) {
-                this.setState({
-                    email: "",
-                    floatEmail: false,
-                    emailError: false,
-                });
-            } else {
-
-                let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
-                const badEmailInput = Regex.test(this.state.email);
-
-                if(!badEmailInput) {
+        
+            if (name === "username") {
+                if (this.state.username.length === 0){
+                    console.log('user === 0')
                     this.setState({
-                        emailError: true,
-                        deleteEmailIcon: false,
-                    })
+                        //username: "",
+                        floatUsername: false,
+                        usernameError: false,
+                        deleteInputIcon: false,
+                    });
                 } else {
-                    this.setState({emailError: false})
+                
+                    if(this.state.username.length < 8){
+                        console.log('user < 8')
+                            this.setState({
+                                usernameError: true, 
+                                //deleteInputIcon: false,
+                            })
+                    }  else {
+                        console.log('user > 8')
+                        this.setState({
+                            usernameError: false, 
+                            deleteInputIcon: false,
+                        })
+                    }
+
+                    this.setState({floatUsername: true})
                 }
-                this.setState({floatEmail: true})
             }
 
-            if(this.state.phone.length === 0) {
-                this.setState({
-                   phone: "",
-                   floatPhone: false,
-                });
-            } else {
-                this.setState({floatPhone: true})
+            if (name === "email") {
+                if(this.state.email.length === 0) {
+                    this.setState({
+                        email: "",
+                        floatEmail: false,
+                        emailError: false,
+                    });
+                } else {
+    
+                    let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+                    const badEmailInput = Regex.test(this.state.email);
+    
+                    if(!badEmailInput) {
+                        this.setState({
+                            emailError: true,
+                            deleteEmailIcon: false,
+                        })
+                    } else {
+                        this.setState({emailError: false})
+                    }
+                    this.setState({floatEmail: true, deleteEmailIcon:false})
+                }
             }
+
         }, 0);
     }
 
@@ -201,7 +200,7 @@ class TextInput extends React.Component {
         }
 
         if(this.state.usernameError) {
-            usernameMessage = "Error: Username needs to be at least 8 characters";
+            usernameMessage = "Input needs to be at least 8 characters";
             usernamePClassName = "input-container__email-extra-message--error";
             usernameFieldInputClassName = "input-container__field-input--error"; 
             spanClassName = "input-container__delete-icon--error" 

@@ -21,24 +21,24 @@ class InputElement extends React.Component {
         this.props.onChange(e.target.value, e.target.name)
     } 
 
-    onFocus() {
-       this.props.onFocus();
+    onFocus(name) {
+       this.props.onFocus(name);
     }
 
-    onBlur() {
-        this.props.onBlur();
+    onBlur(name) {
+        this.props.onBlur(name);
     }
 
     render(){
-   
+
         return (
-            <div className="input-container" onBlur={this.onBlur} onFocus={this.onFocus}>
+            <div className="input-container">
                 <input type="text" 
                         className={this.props.fieldInputclassName} 
                         onChange={this.onChange} 
                         value={this.props.value} 
-                        onBlur={this.onBlur} 
-                        onFocus={this.onFocus}
+                        onBlur={() => this.onBlur(this.props.name)} 
+                        onFocus={() => this.onFocus(this.props.name)}
                         name= {this.props.name}
                         disabled={this.props.disabled}
                         />
