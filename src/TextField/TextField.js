@@ -68,6 +68,16 @@ class TextInput extends React.Component {
                 this.setState({deleteEmailIcon:false})
             }
 
+            let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+            const badEmailInput = Regex.test(value);
+
+            if(badEmailInput && this.state.emailError) {
+                this.setState({
+                    emailError: false,
+                    
+                })
+            }
+
            
         } else if (name === "username") {
             
@@ -76,6 +86,10 @@ class TextInput extends React.Component {
                 this.setState({deleteInputIcon: true});
             } else {
                 this.setState({deleteInputIcon: false});
+            }
+
+            if(value.length > 8 && this.state.usernameError) {
+                this.setState({usernameError:false})
             }
 
         }
@@ -88,6 +102,23 @@ class TextInput extends React.Component {
             if(name === "email") {
                 if(this.state.emailError) {
                     this.setState({deleteEmailIcon:false})
+                }
+
+                let Regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+                const badEmailInput = Regex.test(this.state.email);
+
+                if(badEmailInput) {
+                    this.setState({
+                        deleteEmailIcon:true,
+                        
+                    })
+                }
+
+            }
+
+            if(name === "username") {
+                if(this.state.username.length > 0) {
+                    this.setState({deleteInputIcon:true})
                 }
             }
  
