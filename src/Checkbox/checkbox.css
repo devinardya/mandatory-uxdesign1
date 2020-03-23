@@ -4,24 +4,9 @@ ul {
 }
 
 li { 
-    padding: 10px 0;
+    padding: 15px 0;
     position: relative;
     margin-left: 40px;
-}
-
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
 }
 
 .checkbox-block {
@@ -54,7 +39,7 @@ li {
 
 .checkbox-block__fakedisplay::before{
     display: block;
-    border-radius: 0px;
+    border-radius: 50%;
     position: absolute;
     top:8px;
     left: -44px;
@@ -63,11 +48,14 @@ li {
     text-transform: lowercase;
     font-size: 24px;
     color: #a5a5a5;
+    padding: 5px;
 }
 
 .checkbox-block__sub-option__list > input[type="checkbox"]:focus +  .checkbox-block__fakedisplay::before,
 .checkbox-block__main-option__list > input[type="checkbox"]:focus +  .checkbox-block__fakedisplay::before {
-    border: 1px dotted #dddddd;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: Rgb(201, 201, 201, 0.3);
 }
 
 .checkbox-block__sub-option__list:hover, .checkbox-block__main-option__list:hover {
@@ -77,6 +65,23 @@ li {
 .checkbox-block__sub-option__list > input[type="checkbox"]:checked + .checkbox-block__fakedisplay::before, 
 .checkbox-block__main-option__list > input[type="checkbox"]:checked + .checkbox-block__fakedisplay::before {
     content: "check_box";
+    color: #10aca9;
+}
+
+.checkbox-block__sub-option__list > input[type="checkbox"]:hover + .checkbox-block__fakedisplay::before, 
+.checkbox-block__main-option__list > input[type="checkbox"]:hover + .checkbox-block__fakedisplay::before {
+    padding: 5px;
+    border-radius: 50%;
+    background-color: Rgb(201, 201, 201, 0.3);
+    
+}
+
+
+.checkbox-block__sub-option__list > input[type="checkbox"]:hover:checked + .checkbox-block__fakedisplay::before, 
+.checkbox-block__main-option__list > input[type="checkbox"]:hover:checked + .checkbox-block__fakedisplay::before {
+    padding: 5px;
+    border-radius: 50%;
+    background-color: Rgb(45, 214, 195, 0.3);
     color: #10aca9;
 }
 

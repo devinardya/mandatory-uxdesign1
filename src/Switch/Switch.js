@@ -30,8 +30,8 @@ class Switch extends React.Component {
                 this.setState({
                     disable: "disabled",
                     airplane : true,
-                    wifi: false,
-                    bluetooth: false,
+                    wifi: this.state.wifi === false ? false : true,
+                    bluetooth: this.state.bluetooth === false ? false : true,
                 })          
             }                                                                              
             
