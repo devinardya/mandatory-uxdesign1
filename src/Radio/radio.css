@@ -66,6 +66,10 @@ input[type="radio"] {
     transition: 0.5s;
 }
 
+.radio-block__form__li__listdata[disabled] {
+    color:rgb(182, 182, 182);
+}
+
 .radio-block__form__li__listdata > input[type="radio"]:hover ~ .radio-block__form__fakedisplay::before
 {
     padding: 5px;
@@ -73,7 +77,11 @@ input[type="radio"] {
     background-color: Rgb(201, 201, 201, 0.3);
 }
 
-
+.radio-block__form__li__listdata > input[type="radio"][disabled] ~ .radio-block__form__fakedisplay::before
+{
+    background-color: transparent;
+    color:rgb(182, 182, 182);
+}
 
 .radio-block__form__li__listdata > input[type="radio"]:focus:checked ~ .radio-block__form__fakedisplay::before
 {

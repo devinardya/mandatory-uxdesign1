@@ -47,9 +47,15 @@ const Radio = () => {
                     <form className="radio-block__form">
                         <ul className="radio-block__form__ul">
                             {radioList.map(data => {
+                                let disabledStatus;
+                                if(data.name === "Ganymede") {
+                                    disabledStatus = "disabled";
+                                } else {
+                                    disabledStatus = null;
+                                }
                                 return <li key={data.id} className="radio-block__form__li"> 
-                                            <label className="radio-block__form__li__listdata">
-                                                <input type="radio" name="ringtone" checked={selected === data.name} value={data.name} onChange={onChange}/>
+                                            <label className="radio-block__form__li__listdata" disabled={disabledStatus}>
+                                                <input type="radio" name="ringtone" checked={selected === data.name} value={data.name} onChange={onChange} disabled={disabledStatus}/>
                                                 <span className="radio-block__form__fakedisplay"></span>
                                                 {data.name}
                                             </label>

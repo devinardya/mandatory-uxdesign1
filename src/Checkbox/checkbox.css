@@ -58,6 +58,16 @@ li {
     background-color: Rgb(201, 201, 201, 0.3);
 }
 
+.checkbox-block__sub-option__list > input[type="checkbox"][disabled] +  .checkbox-block__fakedisplay::before {
+    background-color:rgba(201, 201, 201, 0);
+    filter: opacity(55%);
+}
+
+.checkbox-block__sub-option__list[disabled] {
+    color:rgb(182, 182, 182);
+    cursor: auto;
+}
+
 .checkbox-block__sub-option__list:hover, .checkbox-block__main-option__list:hover {
     cursor: pointer;
 }
@@ -73,6 +83,12 @@ li {
     padding: 5px;
     border-radius: 50%;
     background-color: Rgb(201, 201, 201, 0.3);
+    
+}
+
+.checkbox-block__sub-option__list > input[type="checkbox"]:hover + .checkbox-block__fakedisplay::before 
+{
+    background-color: transparent;
     
 }
 

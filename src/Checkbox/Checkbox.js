@@ -85,9 +85,15 @@ const Checkbox = () => {
                                 </label>
                                 <ul className="checkbox-block__sub-option">
                                     {dataList.map(data => {
+                                        let disabledStatus;
+                                        if(data.name === "Lettuce") {
+                                            disabledStatus = "disabled";
+                                        } else {
+                                            disabledStatus = null;
+                                        }
                                         return <li key={data.id}> 
-                                                    <label className="checkbox-block__sub-option__list">
-                                                        <input type="checkbox" checked={data.checked} onChange={() => toggleChecked(data.id)}/>
+                                                    <label className="checkbox-block__sub-option__list" disabled={disabledStatus}>
+                                                        <input type="checkbox" checked={data.checked} disabled={disabledStatus} onChange={() => toggleChecked(data.id)} />
                                                         <span className="checkbox-block__fakedisplay"></span>
                                                         {data.name}
                                                     </label>
