@@ -7,18 +7,20 @@ import { MdAirplanemodeInactive, MdArrowBack, MdMoreVert, MdSearch, MdWifi, MdBl
 
 const Checkbox = () => {
 
-        const [dataList, updateDataList] = useState([{name:"Pickles", checked: false, id:0},
-                                                     {name:"Tomato", checked: false, id:1},
-                                                     {name:"Lettuce", checked: false, id:2},
-                                                     {name:"Cheese", checked: false, id:3},
-                                                     {name:"Extra Ketchup", checked: false, id:4},
+        const [dataList, updateDataList] = useState([{name:"Pickles", checked: false, id:0, disabled:false},
+                                                     {name:"Tomato", checked: false, id:1, disabled:false},
+                                                     {name:"Lettuce", checked: false, id:2, disabled:true},
+                                                     {name:"Cheese", checked: false, id:3, disabled:false},
+                                                     {name:"Extra Ketchup", checked: false, id:4, disabled:false},
                                                     ]);
         const [activeChecked, updateActiveChecked] = useState(false);
         const checkRef = useRef();
       
 
         useEffect(() => {
-            let copyData = [...dataList]
+            let dataFiltered = dataList.filter(data => data.disabled !== true)
+            console.log(dataFiltered)
+            let copyData = [...dataFiltered]
             if(copyData.find((x)=> x.checked === true)) {
                 checkRef.current.indeterminate = true;
             } else {
@@ -40,20 +42,28 @@ const Checkbox = () => {
                 updateDataList(copyData);
             } 
 
-            if(copyData.every((x) => x.checked !== false)) {
+            let dataFiltered = dataList.filter(data => data.disabled !== true)
+            console.log(dataFiltered)
+            let copyDataFiltered = [...dataFiltered]
+
+            if(copyDataFiltered.every((x) => x.checked !== false)) {
+                console.log("ITS HERE")
                 updateActiveChecked(true);
             } else {
                 updateActiveChecked(false);
             }
         }
 
-        const toggleAllChecked = (e) => {
-            //console.log(e.target.checked)
+        const toggleAllChecked = (e, dataFiltered) => {
+            
             updateActiveChecked(e.target.checked)
-            let copyData = [...dataList];
+            console.log(activeChecked)
+            let copyData = [...dataFiltered];
             copyData.map(data => {
+                console.log(data)
                 return data.checked = e.target.checked;
-            })
+            }) 
+           
         }
     
         return(
@@ -79,21 +89,15 @@ const Checkbox = () => {
                         <ul className="checkbox-block__main-option">
                             <li>
                                 <label className="checkbox-block__main-option__list">
-                                    <input type="checkbox" checked={activeChecked} ref={checkRef} onChange={toggleAllChecked}/>
+                                    <input type="checkbox" checked={activeChecked} ref={checkRef} onChange={(e) => toggleAllChecked(e, dataList.filter(data => data.disabled !== true))} />
                                     <span className="checkbox-block__fakedisplay"></span>
                                         Additions
                                 </label>
                                 <ul className="checkbox-block__sub-option">
                                     {dataList.map(data => {
-                                        let disabledStatus;
-                                        if(data.name === "Lettuce") {
-                                            disabledStatus = "disabled";
-                                        } else {
-                                            disabledStatus = null;
-                                        }
                                         return <li key={data.id}> 
-                                                    <label className="checkbox-block__sub-option__list" disabled={disabledStatus}>
-                                                        <input type="checkbox" checked={data.checked} disabled={disabledStatus} onChange={() => toggleChecked(data.id)} />
+                                                    <label className="checkbox-block__sub-option__list" disabled={data.disabled}>
+                                                        <input type="checkbox" checked={data.checked} disabled={data.disabled} onChange={() => toggleChecked(data.id)} />
                                                         <span className="checkbox-block__fakedisplay"></span>
                                                         {data.name}
                                                     </label>

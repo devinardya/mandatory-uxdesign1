@@ -68,6 +68,7 @@ input[type="radio"] {
 
 .radio-block__form__li__listdata[disabled] {
     color:rgb(182, 182, 182);
+    filter:(brightness(50%));
 }
 
 .radio-block__form__li__listdata > input[type="radio"]:hover ~ .radio-block__form__fakedisplay::before
@@ -80,7 +81,7 @@ input[type="radio"] {
 .radio-block__form__li__listdata > input[type="radio"][disabled] ~ .radio-block__form__fakedisplay::before
 {
     background-color: transparent;
-    color:rgb(182, 182, 182);
+    color:rgb(182, 182, 182, 0.5);
 }
 
 .radio-block__form__li__listdata > input[type="radio"]:focus:checked ~ .radio-block__form__fakedisplay::before

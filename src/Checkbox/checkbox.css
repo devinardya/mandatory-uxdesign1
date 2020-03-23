@@ -59,8 +59,8 @@ li {
 }
 
 .checkbox-block__sub-option__list > input[type="checkbox"][disabled] +  .checkbox-block__fakedisplay::before {
-    background-color:rgba(201, 201, 201, 0);
-    filter: opacity(55%);
+    background-color: transparent;
+    color:rgb(182, 182, 182, 0.5);
 }
 
 .checkbox-block__sub-option__list[disabled] {
