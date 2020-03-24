@@ -62,7 +62,7 @@ input {
 
 
 .input-container__field-input:disabled {
-    cursor: not-allowed;
+    cursor: auto;
 }
 
 .input-container__phone-box {
