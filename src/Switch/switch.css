@@ -62,7 +62,7 @@
     position: relative;
     z-index: 2;
     border-radius: 30px;
-    transition: all 0.1s linear;
+    transition: all 0.3s linear;
 }
 
 .switch-block--menu__toggleSwitch--checkbox--display::before{
@@ -84,13 +84,15 @@
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:disabled + .switch-block--menu__toggleSwitch--checkbox--display
 {
     background-color:rgba(201, 201, 201, 0.3);
-    filter: opacity(55%);
+    cursor:auto;
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:disabled + .switch-block--menu__toggleSwitch--checkbox--display::before, 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:disabled:hover + .switch-block--menu__toggleSwitch--checkbox--display::before {
     background-color:rgba(201, 201, 201, 0);
     color: rgb(207, 207, 207);
+    filter: drop-shadow(0 0 0 rgb(189, 189, 189));
+    cursor:auto;
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked:disabled + .switch-block--menu__toggleSwitch--checkbox--display::before,
@@ -99,6 +101,7 @@
     background-color:rgb(42, 199, 196, 0);
     color:#63afae;
     filter: opacity(100%);
+    
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked:disabled + .switch-block--menu__toggleSwitch--checkbox--display{
@@ -114,8 +117,7 @@
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked:hover + .switch-block--menu__toggleSwitch--checkbox--display::before,
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked:focus + .switch-block--menu__toggleSwitch--checkbox--display::before{
     background-color:rgba(99, 219, 217, 0.3);
-    padding: 5px;
-    transform: translate(70%);
+    filter: drop-shadow(0 2px 0.1rem rgb(189, 189, 189));
 }
 
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:checked + .switch-block--menu__toggleSwitch--checkbox--display{
@@ -125,5 +127,7 @@
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:hover + .switch-block--menu__toggleSwitch--checkbox--display::before,
 .switch-block--menu__toggleSwitch--checkbox > input[type="checkbox"]:focus + .switch-block--menu__toggleSwitch--checkbox--display::before  {
     background-color:rgba(231, 231, 231, 0.3);
+    width:24px;
+    height: 24px;
     filter: drop-shadow(0 0 0 rgb(189, 189, 189));
 }
