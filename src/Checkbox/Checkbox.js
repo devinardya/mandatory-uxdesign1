@@ -9,7 +9,7 @@ const Checkbox = () => {
 
         const [dataList, updateDataList] = useState([{name:"Pickles", checked: false, id:0, disabled:false},
                                                      {name:"Tomato", checked: false, id:1, disabled:false},
-                                                     {name:"Lettuce", checked: false, id:2, disabled:true},
+                                                     {name:"Lettuce", checked: false, id:2, disabled:false},
                                                      {name:"Cheese", checked: false, id:3, disabled:false},
                                                      {name:"Extra Ketchup", checked: false, id:4, disabled:false},
                                                     ]);
@@ -65,6 +65,14 @@ const Checkbox = () => {
             }) 
            
         }
+
+        const toggleStatus = (id) => {
+            let copyData = [...dataList]
+            if(copyData.find((x) => x.id === id )) {
+                copyData[id].disabled = copyData[id].disabled ? false : true;
+                updateDataList(copyData);
+            }
+        }
     
         return(
             <>
@@ -101,6 +109,7 @@ const Checkbox = () => {
                                                         <span className="checkbox-block__fakedisplay"></span>
                                                         {data.name}
                                                     </label>
+                                                    <button onClick={() => toggleStatus(data.id)} style={ data.disabled ? {color: "#10aca9" } : {color:"red"}}className="checkbox-block__toggle-status">{data.disabled ? "activate" : "disable"}</button>
                                                  </li>
                                     })}
                                 </ul>

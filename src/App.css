@@ -92,12 +92,38 @@ h1, h2, h3, h4 {
 }
 
 .option {
-  margin: 10px;
+  margin: 0 10px;
+  padding:10px;
+  width: 120px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.7rem;
+  background-color: #10aca9;
+  color: #fff;
+}
+
+.option:focus, .option--active:focus {
+  margin: 0 10px;
+  padding:10px;
+  width: 120px;
+  border: 1px solid orangered;
+}
+
+.option--active {
+  margin: 0 10px;
+  padding:10px;
+  width: 120px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.7rem;
+  background-color: orange;
+  color: #fff;
 }
 
 .option:hover {
   cursor: pointer;
-  color: orange;
+  color: rgb(255, 255, 255);
+  background-color: rgba(17, 163, 161, 0.74);
 }
 
 .box-container {
